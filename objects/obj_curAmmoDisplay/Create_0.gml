@@ -1,0 +1,1 @@
+ammoReserve = obj_player.curAmmo;

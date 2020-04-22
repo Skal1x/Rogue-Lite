@@ -1,0 +1,1 @@
+draw_sprite_ext(spr_health, 0, x, y, 4, 4, image_angle, c_white, 1);

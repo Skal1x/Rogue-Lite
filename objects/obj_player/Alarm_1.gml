@@ -1,0 +1,1 @@
+allowDash = true;

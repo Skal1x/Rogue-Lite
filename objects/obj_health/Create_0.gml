@@ -1,0 +1,1 @@
+hp = obj_player.hp;

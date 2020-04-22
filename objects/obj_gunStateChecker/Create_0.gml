@@ -1,0 +1,1 @@
+state = obj_player.gunState;

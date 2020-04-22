@@ -1,0 +1,21 @@
+x = mouse_x;
+y = mouse_y;
+
+if(instance_exists(obj_player)) {
+	completeSpread = obj_player.spread + abs(obj_player.hsp) * 10 + abs(obj_player.vsp) * 10;
+	lineSpread = completeSpread;
+	
+	lineOneDir = point_direction(obj_player.x, obj_player.y, mouse_x, mouse_y) + lineSpread;
+	lineTwoDir = point_direction(obj_player.x, obj_player.y, mouse_x, mouse_y) - lineSpread;
+	
+	lineOneRad = lineOneDir * (pi / 180);
+	lineTwoRad = lineTwoDir * (pi / 180);
+	
+	lineOneX = obj_player.x + cos(lineOneRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y);
+	lineOneY = obj_player.y + sin(lineOneRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) * -1;
+	
+	lineTwoX = obj_player.x + cos(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y);
+	lineTwoY = obj_player.y + sin(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) * -1;
+}
+
+depth = -y - 1000;
