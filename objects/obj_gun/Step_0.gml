@@ -51,11 +51,11 @@ if (instance_exists(obj_player)) {
 							bullet.spread = spread;
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot, 14]) {
-								case 0: obj_gameController.shakeAmount += 0.1;
-								case 1: obj_gameController.shakeAmount += 0.2;
-								case 2: obj_gameController.shakeAmount += 0.005;
-								case 3: obj_gameController.shakeAmount += 0.7;
-								case 4: obj_gameController.shakeAmount += 0.5;
+								case 0: obj_gameController.shakeAmount += 0.1; break;
+								case 1: obj_gameController.shakeAmount += 0.2; break;
+								case 2: obj_gameController.shakeAmount += 0.05; break;
+								case 3: obj_gameController.shakeAmount += 0.7; break;
+								case 4: obj_gameController.shakeAmount += 0.5; break;
 							}
 						}
 					}
@@ -106,11 +106,11 @@ if (instance_exists(obj_player)) {
 							bullet.spread = spread;
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot, 14]) {
-								case 0: obj_gameController.shakeAmount += 0.1;
-								case 1: obj_gameController.shakeAmount += 0.2;
-								case 2: obj_gameController.shakeAmount += 0.005;
-								case 3: obj_gameController.shakeAmount += 0.7;
-								case 4: obj_gameController.shakeAmount += 0.5;
+								case 0: obj_gameController.shakeAmount += 0.1; break;
+								case 1: obj_gameController.shakeAmount += 0.2; break;
+								case 2: obj_gameController.shakeAmount += 0.05; break;
+								case 3: obj_gameController.shakeAmount += 0.7; break;
+								case 4: obj_gameController.shakeAmount += 0.5; break;
 							}
 						}
 					}
@@ -151,11 +151,11 @@ if (instance_exists(obj_player)) {
 								bullet.spread = spread;
 								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 								switch (obj_player.inv[obj_player.slot, 14]) {
-									case 0: obj_gameController.shakeAmount += 0.1;
-									case 1: obj_gameController.shakeAmount += 0.2;
-									case 2: obj_gameController.shakeAmount += 0.005;
-									case 3: obj_gameController.shakeAmount += 0.7;
-									case 4: obj_gameController.shakeAmount += 0.5;
+									case 0: obj_gameController.shakeAmount += 0.1; break;
+									case 1: obj_gameController.shakeAmount += 0.2; break;
+									case 2: obj_gameController.shakeAmount += 0.05; break;
+									case 3: obj_gameController.shakeAmount += 0.7; break;
+									case 4: obj_gameController.shakeAmount += 0.5; break;
 								}
 							}
 						}
@@ -208,11 +208,11 @@ if (instance_exists(obj_player)) {
 							bullet.spread = spread;
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot, 14]) {
-								case 0: obj_gameController.shakeAmount += 0.1;
-								case 1: obj_gameController.shakeAmount += 0.2;
-								case 2: obj_gameController.shakeAmount += 0.005;
-								case 3: obj_gameController.shakeAmount += 0.7;
-								case 4: obj_gameController.shakeAmount += 0.5;
+								case 0: obj_gameController.shakeAmount += 0.1; break;
+								case 1: obj_gameController.shakeAmount += 0.2; break;
+								case 2: obj_gameController.shakeAmount += 0.05; break;
+								case 3: obj_gameController.shakeAmount += 0.7; break;
+								case 4: obj_gameController.shakeAmount += 0.5; break;
 							}
 						}
 					}
@@ -261,11 +261,11 @@ if (instance_exists(obj_player)) {
 								bullet.spread = spread;
 								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 								switch (obj_player.inv[obj_player.slot, 14]) {
-									case 0: obj_gameController.shakeAmount += 0.1;
-									case 1: obj_gameController.shakeAmount += 0.2;
-									case 2: obj_gameController.shakeAmount += 0.005;
-									case 3: obj_gameController.shakeAmount += 0.7;
-									case 4: obj_gameController.shakeAmount += 0.5;
+									case 0: obj_gameController.shakeAmount += 0.1; break;
+									case 1: obj_gameController.shakeAmount += 0.2; break;
+									case 2: obj_gameController.shakeAmount += 0.05; break;
+									case 3: obj_gameController.shakeAmount += 0.7; break;
+									case 4: obj_gameController.shakeAmount += 0.5; break;
 								}
 							}
 						}
