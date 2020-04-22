@@ -1,7 +1,18 @@
 if(instance_exists(obj_player)) {
-	
-	x = obj_player.x;
-	y = obj_player.y;
+	/*
+	//Player Speed Compensation
+	if (mouse_x < obj_player.x) {
+		if (mouse_y < obj_player.y) {
+			if (obj_player.hsp < 0) {
+				
+			}
+		} else {
+			
+		}
+	} else {
+		
+	}
+	*/
 	
 	image_angle = point_direction(obj_player.x, obj_player.y, mouse_x, mouse_y);
 	image_xscale = 1 + abs(obj_player.hsp) / obj_player.maxRunSpeed / 2 + abs(obj_player.vsp) / obj_player.maxRunSpeed / 2;

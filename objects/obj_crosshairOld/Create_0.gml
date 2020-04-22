@@ -1,3 +1,6 @@
+x = mouse_x;
+y = mouse_y;
+
 completeSpread = 0;
 lineSpread = 0
 

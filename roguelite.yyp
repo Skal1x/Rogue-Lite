@@ -199,6 +199,14 @@
             }
         },
         {
+            "Key": "1d231d71-2c1d-427f-b348-c3789bf72f9b",
+            "Value": {
+                "id": "1c52d93e-af66-4cff-9d95-2f5aa4c8c104",
+                "resourcePath": "objects\\obj_crosshair\\obj_crosshair.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "1ece0c0d-3779-4ae1-bcf2-0ea78e535529",
             "Value": {
                 "id": "fcf9c9c4-5b50-4880-b5d5-5eb3e6bbc993",
@@ -516,6 +524,14 @@
                 "id": "7403630c-1836-4157-81ed-196467692f7a",
                 "resourcePath": "views\\5ecc79b3-59b1-466b-a9c4-39b2098ecab1.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "6518b6f1-8615-42a7-9edb-5b967dd1a795",
+            "Value": {
+                "id": "f8d1a90d-fe0c-4f73-977c-727c0ae019c4",
+                "resourcePath": "sprites\\spr_crosshairConcept\\spr_crosshairConcept.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -938,7 +954,7 @@
             "Key": "b8cb152e-2ead-4dca-a1a6-39a3b2ebbe7f",
             "Value": {
                 "id": "4a4bb69a-fdd0-4af0-9fcd-ee432a730747",
-                "resourcePath": "objects\\obj_crosshair\\obj_crosshair.yy",
+                "resourcePath": "objects\\obj_crosshairOld\\obj_crosshairOld.yy",
                 "resourceType": "GMObject"
             }
         },
