@@ -583,6 +583,14 @@
             }
         },
         {
+            "Key": "6eb99bc9-007c-4b51-9b98-73fd2b348d6e",
+            "Value": {
+                "id": "78366bb4-e9d1-417e-b77d-457cc7370eee",
+                "resourcePath": "sprites\\crosshair\\crosshair.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "6ec96fd7-c844-4db7-b379-5149698ae50d",
             "Value": {
                 "id": "821241d7-f6d8-43a3-8567-2c317605c3d3",
