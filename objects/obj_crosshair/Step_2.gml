@@ -3,6 +3,14 @@ if(instance_exists(obj_player)) {
 	x = obj_player.x;
 	y = obj_player.y;
 	
+	curHsp = obj_player.hsp;
+	curVsp = obj_player.vsp;
+	
+	dir = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
+	radian = dir * (pi / 180);
+	stepX = cos(radian);
+	stepY = sin(radian) * -1;
+	
 	image_angle = point_direction(obj_player.x, obj_player.y, mouse_x, mouse_y);
 	image_xscale = 1 + abs(obj_player.hsp) / obj_player.maxRunSpeed / 2 + abs(obj_player.vsp) / obj_player.maxRunSpeed / 2;
 	image_yscale = 1 + abs(obj_player.hsp) / obj_player.maxRunSpeed / 2 + abs(obj_player.vsp) / obj_player.maxRunSpeed / 2;
@@ -16,11 +24,48 @@ if(instance_exists(obj_player)) {
 	lineOneRad = lineOneDir * (pi / 180);
 	lineTwoRad = lineTwoDir * (pi / 180);
 	
-	lineOneX = obj_player.x + cos(lineOneRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y);
-	lineOneY = obj_player.y + sin(lineOneRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) * -1;
+	if (mouse_x < obj_player.x) xFactor = -1; else xFactor = 1;
+	if (mouse_y < obj_player.y) yFactor = -1; else yFactor = 1;
 	
-	lineTwoX = obj_player.x + cos(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y);
-	lineTwoY = obj_player.y + sin(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) * -1;
+	lineOneX = obj_player.x + cos(lineOneRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) + stepX * curHsp * xFactor;
+	lineOneY = (obj_player.y + sin(lineOneRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) * -1) + stepY * curVsp * yFactor;
+	
+	lineTwoX = obj_player.x + cos(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) + stepX * curHsp * xFactor;
+	lineTwoY = (obj_player.y + sin(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) * -1) + stepY * curVsp * yFactor;
+	
+	/*
+	if (curLineOneX < lineOneX) {
+		curLineOneX += 5;
+		if (curLineOneX > lineOneX) curLineOneX = lineOneX;
+	} else {
+		curLineOneX -= 5;
+		if (curLineOneX > lineOneX) curLineOneX = lineOneX;
+	}
+	
+	if (curLineOneY < lineOneY) {
+		curLineOneY += 5;
+		if (curLineOneY > lineOneY) curLineOneY = lineOneY;
+	} else {
+		curLineOneY -= 5;
+		if (curLineOneY > lineOneY) curLineOneY = lineOneY;
+	}
+	
+	if (curLineTwoX < lineTwoX) {
+		curLineTwoX += 5;
+		if (curLineTwoX > lineTwoX) curLineTwoX = lineTwoX;
+	} else {
+		curLineTwoX -= 5;
+		if (curLineTwoX > lineTwoX) curLineTwoX = lineTwoX;
+	}
+	
+	if (curLineTwoY < lineTwoY) {
+		curLineTwoY += 5;
+		if (curLineTwoY > lineTwoY) curLineTwoY = lineTwoY;
+	} else {
+		curLineTwoY -= 5;
+		if (curLineTwoY > lineTwoY) curLineTwoY = lineTwoY;
+	}
+	*/
 }
 
 depth = -y - 1000;
