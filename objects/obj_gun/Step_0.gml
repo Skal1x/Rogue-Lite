@@ -77,7 +77,7 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
-					audio_play_sound(snd_gunShotDIY,1,0);
+					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
 					obj_player.fireReady = false;
@@ -132,7 +132,7 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
-					audio_play_sound(snd_gunShotDIY,1,0);
+					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
 					obj_player.curBurst--;
@@ -177,7 +177,7 @@ if (instance_exists(obj_player)) {
 								motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 							}
 						}
-						audio_play_sound(snd_gunShotDIY,1,0);
+						audio_play_sound(snd_gunShotGeneric,1,0);
 						image_index = 1;
 						alarm[0] = 4;
 						obj_player.curBurst--;
@@ -234,7 +234,7 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
-					audio_play_sound(snd_gunShotDIY,1,0);
+					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
 					obj_player.fireReady = false;
@@ -287,7 +287,7 @@ if (instance_exists(obj_player)) {
 								motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 							}
 						}
-						audio_play_sound(snd_gunShotDIY,1,0);
+						audio_play_sound(snd_gunShotGeneric,1,0);
 						image_index = 1;
 						alarm[0] = 4;
 						obj_player.fireReady = false;
