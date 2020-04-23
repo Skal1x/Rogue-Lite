@@ -55,10 +55,21 @@ if (vsp <= -runSpeed) vsp = -runSpeed;
 if (hsp <= -runSpeed) hsp = -runSpeed;
 if (vsp >= runSpeed) vsp = runSpeed;
 if (hsp >= runSpeed) hsp = runSpeed;
-if (hsp < 0) hsp += drag;
-if (vsp < 0) vsp += drag;
-if (hsp > 0) hsp -= drag;
-if (vsp > 0) vsp -= drag;
+
+//Add Drag
+/*
+if (hsp < 0) for (var i = 0; i < 10; i++) if (hsp < 0) hsp += drag; else break;
+if (vsp < 0) for (var i = 0; i < 10; i++) if (vsp < 0) vsp += drag; else break;
+if (hsp > 0) for (var i = 0; i < 10; i++) if (hsp > 0) hsp -= drag; else break;
+if (vsp > 0) for (var i = 0; i < 10; i++) if (vsp > 0) vsp -= drag; else break;
+*/
+
+for (var i = 0; i < 100; i++) {
+	if (hsp < 0) {hsp += drag; if (hsp > 0) hsp = 0;}
+	if (vsp < 0) {vsp += drag; if (vsp > 0) vsp = 0;}
+	if (hsp > 0) {hsp -= drag; if (hsp < 0) hsp = 0;}
+	if (vsp > 0) {vsp -= drag; if (vsp < 0) vsp = 0;}
+}
 
 //Execute Movement
 x += hsp;
@@ -148,7 +159,6 @@ if (curReload == 0 && gunState == 2) {
 }
 
 //Single Shot Reload
-
 if (curSingleReload > 0 && singleReloading) {
 	if (keyboard_check_pressed(ord("F"))) {
 		if (curSingleReload < exeSingleReloadStart && curSingleReload > exeSingleReloadStop && !singleReloadFailed) {
@@ -514,4 +524,9 @@ if (keyboard_check_pressed(ord("G"))) {
 	curReload = 0;
 	curSingleReload = 0;
 	rarity = 0;
+}
+
+//Reset Movement Speed Outside of Fire
+if (!place_meeting(x,y,obj_fire) && !dash) {
+	runSpeed = maxRunSpeed;
 }
