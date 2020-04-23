@@ -3,7 +3,7 @@ if (!instance_exists(obj_player)) {
 		game_restart();
 	}
 }
-
+/*
 if (instance_exists(obj_player)) {
 	camera_set_view_target(view_camera[0], obj_player);
 	camera_set_view_border(view_camera[0],448,252);
@@ -27,6 +27,7 @@ if (shakeAmount > 0) {
 if (shakeAmount < 0) {
 	shakeAmount = 0;
 }
+*/
 
 obj_crosshair.x = mouse_x;
 obj_crosshair.y = mouse_y;
