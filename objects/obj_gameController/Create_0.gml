@@ -55,10 +55,3 @@ viewX = camera_get_view_x(view_camera[0]);
 viewY = camera_get_view_y(view_camera[0]);
 shakeAmount = 0;
 maxShake = 30;
-
-if (instance_exists(obj_player)) {
-	camera_set_view_target(view_camera[0], obj_player);
-	camera_set_view_border(view_camera[0],448,252);
-	viewX = obj_player.x - 224;
-	viewY = obj_player.y - 126;
-}
