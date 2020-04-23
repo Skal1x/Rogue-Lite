@@ -135,6 +135,14 @@
             }
         },
         {
+            "Key": "1566c5d5-8de4-464f-8a95-f581a99e8334",
+            "Value": {
+                "id": "3f2e4c3e-a2be-4264-b7b6-cb2b58b525fa",
+                "resourcePath": "sprites\\spr_spreadCone\\spr_spreadCone.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "15fd4fe4-e849-47f8-b911-4ddc7e37ee57",
             "Value": {
                 "id": "19377558-0697-4835-b817-38f2ee93c5d4",
@@ -500,6 +508,14 @@
                 "id": "1061754c-ae52-4054-9492-3e9b2f5ec101",
                 "resourcePath": "sprites\\spr_bulletPartExplosiveEffect\\spr_bulletPartExplosiveEffect.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "5cf3b623-ad5e-4459-bdfe-aa2e6c200911",
+            "Value": {
+                "id": "9e675948-b291-400d-ba99-c85d6a8ff0f6",
+                "resourcePath": "sounds\\snd_gunShotDIY\\snd_gunShotDIY.yy",
+                "resourceType": "GMSound"
             }
         },
         {

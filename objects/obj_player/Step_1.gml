@@ -4,16 +4,6 @@ if (keyboard_check(ord("A"))) hsp -= runSpeed;
 if (keyboard_check(ord("S"))) vsp += runSpeed;
 if (keyboard_check(ord("D"))) hsp += runSpeed;
 
-//Limit Speed
-if (vsp <= -runSpeed) vsp = -runSpeed;
-if (hsp <= -runSpeed) hsp = -runSpeed;
-if (vsp >= runSpeed) vsp = runSpeed;
-if (hsp >= runSpeed) hsp = runSpeed;
-if (hsp < 0) hsp += drag;
-if (vsp < 0) vsp += drag;
-if (hsp > 0) hsp -= drag;
-if (vsp > 0) vsp -= drag;
-
 //Collision
 if (place_meeting(x, y+vsp, obj_wall)) {
 	if (vsp > 0) {
@@ -59,6 +49,16 @@ if (dash) {
 		dashTimer--;
 	}
 }
+
+//Limit Speed
+if (vsp <= -runSpeed) vsp = -runSpeed;
+if (hsp <= -runSpeed) hsp = -runSpeed;
+if (vsp >= runSpeed) vsp = runSpeed;
+if (hsp >= runSpeed) hsp = runSpeed;
+if (hsp < 0) hsp += drag;
+if (vsp < 0) vsp += drag;
+if (hsp > 0) hsp -= drag;
+if (vsp > 0) vsp -= drag;
 
 //Execute Movement
 x += hsp;
