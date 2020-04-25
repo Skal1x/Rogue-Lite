@@ -10,6 +10,7 @@ drag =0.005;
 dash = false;
 dashTimer = 0;
 allowDash = true;
+drawNotice = false;
 
 //Inventory
 slot = 0;

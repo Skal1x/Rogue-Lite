@@ -89,17 +89,7 @@ depth = -y;
 
 //Player Orientation
 if (mouse_x >= x) image_xscale = 1; else image_xscale = -1;
-
-//Debug Enemy Respawning
-if (keyboard_check_pressed(ord("E"))) {
-	instance_create_depth(200,328,-y,obj_enemyBasic);
-	instance_create_depth(248,328,-y,obj_enemyBasic);
-	instance_create_depth(296,328,-y,obj_enemyBasic);
-	instance_create_depth(344,328,-y,obj_enemyBasic);
-	instance_create_depth(392,328,-y,obj_enemyBasic);
-	instance_create_depth(440,328,-y,obj_enemyBasic);
-	instance_create_depth(488,328,-y,obj_enemyBasic);
-}
+if (mouse_x >= x) image_xscale = 1; else image_xscale = -1;
 
 //Damage and Health
 if (hp <= 0) {
@@ -205,9 +195,9 @@ if (ejecting) {
 
 //PickUp Weapon (For Testing)
 
-if (place_meeting(x,y,obj_gunDropped)) {
+if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_nearest(x, y, obj_gunDropped).y) < 16) {
+	drawNotice = true;
 	if (keyboard_check_pressed(ord("Q"))) {
-		
 		switchWith = instance_nearest(x,y,obj_gunDropped);
 	
 		if (inv[slot, 1] != 0) {
@@ -296,6 +286,8 @@ if (place_meeting(x,y,obj_gunDropped)) {
 		weaponPickedUp = true;
 		obj_ammoDisplay.weaponPicked = true;
 	}
+} else {
+	drawNotice = false;
 }
 
 //Weapon Switching
