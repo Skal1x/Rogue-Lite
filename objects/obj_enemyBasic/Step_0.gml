@@ -51,7 +51,6 @@ if (hp <= 0) {
 }
 
 //Fire Slow Effect
-
 if (place_meeting(x,y,obj_fire)) {
 	curRunSpeed = maxRunSpeed / 2;
 } else {
