@@ -121,6 +121,24 @@ if (gunState == 0 && fireMode == 3 && obj_gun.singleReloaded == false && fireRea
 	if (keyboard_check_pressed(ord("R"))) {
 		curSingleReload = singleReloadTime;
 		singleReloading = true;
+		with (instance_create_depth(obj_gun.x, obj_gun.y, -y-2, obj_bulletShell)) {
+			switch (obj_player.inv[obj_player.slot, 14]) {
+				case 0: sprite_index = spr_ammoSmallShell; break;
+				case 1: sprite_index = spr_ammoBigShell; break;
+				case 2: sprite_index = spr_ammoShotgunShell; break;
+				case 3: sprite_index = spr_ammoExplosiveShell; break;
+				case 4: sprite_index = spr_ammoIncendiaryShell; break;
+			}
+			image_xscale = 0.4;
+			image_yscale = 0.4;
+			if (obj_gun.image_yscale == -1) {
+				image_angle = obj_gun.image_angle + random_range(-15,15) - 90;
+				motion_add(obj_gun.image_angle - 90 + random_range(-15,15), 0.5 + random_range(0,1));
+			} else {
+				image_angle = obj_gun.image_angle + random_range(-15,15) - 90;
+				motion_add(obj_gun.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
+			}
+		}
 	}
 }
 
