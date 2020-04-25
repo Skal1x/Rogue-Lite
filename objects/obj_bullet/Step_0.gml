@@ -46,6 +46,30 @@ for (var i = 0; i < bulletSpeed; i++) {
 		break;
 	}
 	
+	if (place_meeting(x,y,obj_enemyGunner)) {
+		collider = instance_nearest(x,y,obj_enemyGunner);
+		if (sprite_index = spr_bulletLarge) {
+			collider.hp -= damage * 1.5;
+		} else {
+			collider.hp -= damage;
+		}
+		if (sprite_index = spr_bulletExplosive) {
+			var explosion = instance_create_depth(x,y,-y-256,obj_explosion);
+			explosion.damage = expDamage;
+			explosion.maxSize = expSize;
+		}
+		if (sprite_index = spr_bulletIncendiary) {
+			var fire = instance_create_depth(x,y,-y + 200,obj_fire);
+			fire.damage = expDamage / 240;
+			fire.maxSize = expSize;
+		}
+		destroy = true;
+		for (var i = 0; i < 6; i++) {
+			instance_create_depth(x + random_range(-8,8), y + random_range(-8,8), -y, obj_bloodPart);
+		}
+		break;
+	}
+	
 	if (range > 0) {
 		range--;
 	} else {

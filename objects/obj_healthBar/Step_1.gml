@@ -1,4 +1,4 @@
-if (instance_exists(obj_player)) hp = obj_player.hp;
+if (instance_exists(obj_player)) hp = obj_player.hp; else hp = 0;
 
 if (healthDamageTimer > 0) {
 	healthDamageTimer--;

@@ -78,7 +78,7 @@ switch (enemyState) {
 }
 
 //Check Distance and LoS to the Player
-if (instance_exists(obj_player) && enemyState != 0 && enemyState != 1) {
+if (instance_exists(obj_player) && enemyState > 1) {
 	if (!collision_line(x, y, obj_player.x, obj_player.y, obj_wall, 1, true) && point_distance(x, y, obj_player.x, obj_player.y) < 100 && enemyState == 2) {
 		enemyState = 3;
 	}
