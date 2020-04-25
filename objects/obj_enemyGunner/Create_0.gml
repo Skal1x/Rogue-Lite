@@ -13,3 +13,4 @@ drawAlert = false;
 startChase = false;
 path = path_add();
 lastX = x;
+fireCooldown = 0;

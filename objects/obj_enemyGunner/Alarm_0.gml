@@ -1,0 +1,1 @@
+enemyState = 2;
