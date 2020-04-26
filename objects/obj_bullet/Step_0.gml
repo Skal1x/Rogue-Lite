@@ -1,7 +1,12 @@
+#region Hit Detection and Movement
 for (var i = 0; i < bulletSpeed; i++) {
+	
+	#region Move One Step
 	x += stepX;
 	y += stepY;
+	#endregion
 	
+	#region Collision with Wall
 	if (place_meeting(x,y,obj_wall)) {
 		decal = instance_create_depth(x,y,-y-5,obj_bulletDecal);
 		with (decal) {
@@ -21,7 +26,9 @@ for (var i = 0; i < bulletSpeed; i++) {
 		destroy = true;
 		break;
 	}
+	#endregion
 	
+	#region Collision with enemyBasic
 	if (place_meeting(x,y,obj_enemyBasic)) {
 		collider = instance_nearest(x,y,obj_enemyBasic);
 		if (sprite_index = spr_bulletLarge) {
@@ -45,7 +52,9 @@ for (var i = 0; i < bulletSpeed; i++) {
 		}
 		break;
 	}
+	#endregion
 	
+	#region Collision with enemyGunner
 	if (place_meeting(x,y,obj_enemyGunner)) {
 		collider = instance_nearest(x,y,obj_enemyGunner);
 		if (sprite_index = spr_bulletLarge) {
@@ -69,7 +78,9 @@ for (var i = 0; i < bulletSpeed; i++) {
 		}
 		break;
 	}
+	#endregion
 	
+	#region Reached End of Range
 	if (range > 0) {
 		range--;
 	} else {
@@ -91,7 +102,9 @@ for (var i = 0; i < bulletSpeed; i++) {
 		destroy = true;
 		break;
 	}
+	#endregion
 	
+	#region Crate Particles
 	switch (sprite_index) {
 		case spr_bulletSmall: part_particles_create(obj_gameController.partSys,x + random_range(-2,2), y + random_range(-2,2),obj_gameController.smallBallisticPart, 1); break;
 		case spr_bulletLarge: part_particles_create(obj_gameController.partSys,x + random_range(-2,2), y + random_range(-2,2),obj_gameController.largeBallisticPart, 1); break;
@@ -99,6 +112,10 @@ for (var i = 0; i < bulletSpeed; i++) {
 		case spr_bulletExplosive: part_particles_create(obj_gameController.partSys,x + random_range(-2,2), y + random_range(-2,2),obj_gameController.explosivePart, 1); break;
 		case spr_bulletIncendiary: part_particles_create(obj_gameController.partSys,x + random_range(-2,2), y + random_range(-2,2),obj_gameController.incendiaryPart, 1); break;
 	}
+	#endregion
 }
+#endregion
 
+#region Self Destruction
 if (destroy) instance_destroy();
+#endregion

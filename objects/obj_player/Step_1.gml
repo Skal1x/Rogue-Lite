@@ -1,10 +1,11 @@
-//Movement Input
+#region Movement Input
 if (keyboard_check(ord("W"))) vsp -= runSpeed;
 if (keyboard_check(ord("A"))) hsp -= runSpeed;
 if (keyboard_check(ord("S"))) vsp += runSpeed;
 if (keyboard_check(ord("D"))) hsp += runSpeed;
+#endregion
 
-//Collision
+#region Collisions
 if (place_meeting(x, y+vsp, obj_wall)) {
 	if (vsp > 0) {
 		while (place_meeting(x, y + vsp, obj_wall)) {
@@ -28,8 +29,9 @@ if (place_meeting(x + hsp, y, obj_wall)) {
 		}
 	}
 }
+#endregion
 
-//Dashing
+#region Dashing
 if (!dash && allowDash) {
 	if (keyboard_check_pressed(vk_shift)) {
 		dash = true;
@@ -49,20 +51,13 @@ if (dash) {
 		dashTimer--;
 	}
 }
+#endregion
 
-//Limit Speed
+#region Speed Limit and Drag
 if (vsp <= -runSpeed) vsp = -runSpeed;
 if (hsp <= -runSpeed) hsp = -runSpeed;
 if (vsp >= runSpeed) vsp = runSpeed;
 if (hsp >= runSpeed) hsp = runSpeed;
-
-//Add Drag
-/*
-if (hsp < 0) for (var i = 0; i < 10; i++) if (hsp < 0) hsp += drag; else break;
-if (vsp < 0) for (var i = 0; i < 10; i++) if (vsp < 0) vsp += drag; else break;
-if (hsp > 0) for (var i = 0; i < 10; i++) if (hsp > 0) hsp -= drag; else break;
-if (vsp > 0) for (var i = 0; i < 10; i++) if (vsp > 0) vsp -= drag; else break;
-*/
 
 for (var i = 0; i < 100; i++) {
 	if (hsp < 0) {hsp += drag; if (hsp > 0) hsp = 0;}
@@ -70,12 +65,15 @@ for (var i = 0; i < 100; i++) {
 	if (hsp > 0) {hsp -= drag; if (hsp < 0) hsp = 0;}
 	if (vsp > 0) {vsp -= drag; if (vsp < 0) vsp = 0;}
 }
+#endregion
 
-//Execute Movement
+#region Movement Execution
 x += hsp;
 y += vsp;
-
-// Movement Animation
+#endregion
+	
+#region Sprites Manipulation and Animation
+//Run Animation
 if (vsp != 0 || hsp != 0) {
 	sprite_index = spr_debugPlayerRun;
 	image_speed = 0.5;
@@ -83,28 +81,31 @@ if (vsp != 0 || hsp != 0) {
 	sprite_index = spr_debugPlayerIdle
 	image_speed = 0.04;
 }
-	
+
 //Depth
 depth = -y;
 
 //Player Orientation
 if (mouse_x >= x) image_xscale = 1; else image_xscale = -1;
 if (mouse_x >= x) image_xscale = 1; else image_xscale = -1;
+#endregion
 
-//Damage and Health
+#region Damage and Health Management
 if (hp <= 0) {
 	instance_create_depth(0,0,-y-1000,obj_deathMessage);
 	instance_destroy();
 }
+#endregion
 
-//Determin Reload Perfect Timing
+#region Perfect Reload Time Calculation
 exeReloadStart = reloadTime / 2;
 exeReloadStop = reloadTime / 2 - reloadTime / 4;
 
 exeSingleReloadStart = singleReloadTime / 2;
 exeSingleReloadStop = singleReloadTime / 2 - singleReloadTime / 4;
+#endregion
 
-//Reloading
+#region Reloading Generic
 if (gunState == 0 && keyboard_check_pressed(vk_lcontrol)) {
 	curMag = 0;
 	ejecting = true;
@@ -141,8 +142,9 @@ if (gunState == 0 && fireMode == 3 && obj_gun.singleReloaded == false && fireRea
 		}
 	}
 }
+#endregion
 
-//Countdown Reload
+#region Reload Countdown
 if (curReload > 0 && gunState == 2) {
 	if (keyboard_check_pressed(ord("F"))) {
 		if (curReload < exeReloadStart && curReload > exeReloadStop && !reloadFailed) {
@@ -165,8 +167,9 @@ if (curReload == 0 && gunState == 2) {
 	}
 	reloadFailed = false;
 }
+#endregion
 
-//Single Shot Reload
+#region Single-Shit Reload (Pump/Bolt-Action)
 if (curSingleReload > 0 && singleReloading) {
 	if (keyboard_check_pressed(ord("F"))) {
 		if (curSingleReload < exeSingleReloadStart && curSingleReload > exeSingleReloadStop && !singleReloadFailed) {
@@ -188,10 +191,9 @@ if (gunState == 3 && singleReloading) {
 	singleReloading = false;
 	gunState = 0;
 }
+#endregion
 
-
-
-//Fire Delay
+#region Fire Delay
 if (!fireReady) {
 	if (curFireCooldown > 0) {
 		curFireCooldown--;
@@ -200,8 +202,9 @@ if (!fireReady) {
 		curFireCooldown = fireRate;
 	}
 }
+#endregion
 
-//Ejection Timer
+#region Ejection Timer
 if (ejecting) {
 	if (ejectTimer > 0) {
 		ejectTimer--;
@@ -210,9 +213,9 @@ if (ejecting) {
 		ejectTimer = ejectSpeed;
 	}
 }
+#endregion
 
-//PickUp Weapon (For Testing)
-
+#region Weapon Pick-Up
 if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_nearest(x, y, obj_gunDropped).y) < 16) {
 	drawNotice = true;
 	if (keyboard_check_pressed(ord("Q"))) {
@@ -307,8 +310,9 @@ if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_near
 } else {
 	drawNotice = false;
 }
+#endregion
 
-//Weapon Switching
+#region Weapon Switching
 if (slot == 0) {
 	if (mouse_wheel_down()) {
 		weaponSwitched = true;
@@ -350,8 +354,9 @@ if (slot == 0) {
 		slot = 0;
 	}
 }
+#endregion
 
-//Update Stats in from Inventory
+#region stat update
 if (weaponPickedUp || weaponSwitched) {
 	name = inv[slot, 0];
 	gunType = inv[slot, 1];
@@ -442,9 +447,9 @@ if (keyboard_check_pressed(vk_f9)) {
 		}
 	}
 }
+#endregion
 
-//Update Inventory
-
+#region Inventory Update
 inv[slot, 3] = curMag;
 inv[slot, 4] = curAmmo;
 inv[slot, 9] = curBurst;
@@ -458,9 +463,9 @@ inv[slot, 29] = singleReloadFailed;
 inv[slot, 30] = reloadFailed;
 inv[slot, 31] = curReload;
 inv[slot, 32] = curSingleReload;
+#endregion
 
-//Weapon Dropping
-
+#region Weapon Dropping
 if (keyboard_check_pressed(ord("G"))) {
 	with (instance_create_depth(x,y,-y,obj_gunDropped)) {
 		for (var i = 0; i <= 35; i++) {
@@ -535,8 +540,10 @@ if (keyboard_check_pressed(ord("G"))) {
 	curSingleReload = 0;
 	rarity = 0;
 }
+#endregion
 
-//Reset Movement Speed Outside of Fire
+#region Fire Speed Reduction and Reset
 if (!place_meeting(x,y,obj_fire) && !dash) {
 	runSpeed = maxRunSpeed;
 }
+#endregion

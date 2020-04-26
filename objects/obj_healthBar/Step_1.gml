@@ -1,5 +1,8 @@
+#region Update Health
 if (instance_exists(obj_player)) hp = obj_player.hp; else hp = 0;
+#endregion
 
+#region Health Regen Damage Cooldown
 if (healthDamageTimer > 0) {
 	healthDamageTimer--;
 }
@@ -8,7 +11,9 @@ if (hp < prevHp) {
 	healthDamageTimer = 30;
 	regenCooldown = 360;
 }
+#endregion
 
+#region Health Regen
 if (instance_exists(obj_player)) {
 	if (regenCooldown > 0) {
 		regenCooldown--;
@@ -55,7 +60,9 @@ if (instance_exists(obj_player)) {
 		}
 	}
 }
+#endregion
 
+#region Healthbar Smoothing Animation
 if (curHp > hp && regenCooldown != 0) {
 	curHp -= 0.005 + 0.02 * (curHp - hp);
 }
@@ -63,5 +70,8 @@ if (curHp > hp && regenCooldown != 0) {
 if(curHp <= 0) {
 	curHp = 0;
 }
+#endregion
 
+#region Update Last-Tick Health
 prevHp = hp;
+#endregion

@@ -1,6 +1,6 @@
 ///Initialize Variables
 
-//Basic Values (Health, Speed)
+#region Basic Values (Health, Speed, Dash)
 hp = 100.00;
 hsp = 0;
 vsp = 0;
@@ -11,8 +11,10 @@ dash = false;
 dashTimer = 0;
 allowDash = true;
 drawNotice = false;
+image_speed = 0.5;
+#endregion
 
-//Inventory
+#region Inventory Initialization
 slot = 0;
 weaponPickedUp = false;
 weaponSwitched = false;
@@ -30,7 +32,9 @@ for (var i = 0; i <= 1; i++) {
 		}
 	}
 }
+#endregion
 
+#region Inventory Array Description List
 /*
 LIST
 00 = Weapon Name
@@ -70,17 +74,20 @@ LIST
 34 = Explosion Radius
 35 = Explosion Damage
 */
+#endregion
 
-//Damage Invulnerability
+#region Invulnerability
 invul = false;
 invulTimer = 0;
+#endregion
 
-//Gun Details
+#region Gun-Stats Basic
 name = "gun";
 gunType = 1;
 rarity = 0;
+#endregion
 
-//Gun Variables
+#region Gun-Stats Generic
 maxMag = 24;
 curMag = 24;
 curAmmo = 240;
@@ -98,8 +105,9 @@ randomEffect = 0; // 0 = No Effect, 1 = Self-Destruct
 fireReady = true;
 curFireCooldown = fireRate;
 expRadius = 0;
+#endregion
 
-//Reloading
+#region Gun-Stats Reloading
 gunState = 0;
 ejectSpeed = 60;
 ejecting = false;
@@ -115,8 +123,9 @@ singleReloadFailed = false;
 reloadFailed = false;
 curReload = reloadTime;
 curSingleReload = singleReloadTime;
+#endregion
 
-//Weapon Stat Reset (For Testing)
+#region Gun-Stat Reset
 name = "EMPTY";
 gunType = 0;
 maxMag = 0;
@@ -152,5 +161,4 @@ curReload = 0;
 curSingleReload = 0;
 rarity = 0;
 expDamage = 0;
-//Misc
-image_speed = 0.5;
+#endregion

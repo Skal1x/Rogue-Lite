@@ -1,4 +1,4 @@
-//Set Stats
+#region Stats Description List
 /*
 stats[0] = name;
 stats[1] = gunType;
@@ -37,6 +37,9 @@ stats[33] = rarity;
 stats[34] = expRadius;
 stats[35] = expDamage;
 */
+#endregion
+
+#region Stats Setup
 stats[35] = 0;
 
 //Set Stats
@@ -76,6 +79,9 @@ stats[32] = 0;		//Remaining Single-Shot Reload Time (Pump/Bolt-Action only)
 stats[33] = 0;		//Gun Rarity
 stats[34] = 0;		//Explosion Radius
 stats[35] = 0;		//Explosion Damage
+#endregion
 
+#region Animation Cancel
 //Stop Shoot Thank
 image_speed = 0;
+#endregion

@@ -1,3 +1,4 @@
+#region Invulnerability
 if (!invul) {
 	draw_self();
 } else {
@@ -12,12 +13,15 @@ if (!invul) {
 		invulTimer--;
 	}
 }
+#endregion
 
+#region Pick-Up Notice
 if (drawNotice) {
 	draw_sprite_ext(spr_pickupNotice, 0, instance_nearest(x, y, obj_gunDropped).x, instance_nearest(x, y, obj_gunDropped).y -8 , 0.6, 0.6, 0, c_white, 1);
 }
+#endregion
 
-//Debug Stuff
+#region Debug Stuff
 /*
 draw_set_color(c_black);
 draw_set_font(fnt_genericSmallExtra);
@@ -27,3 +31,4 @@ draw_line(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_nearest(x, y,
 draw_text(x + 8, y + 8, string(drawNotice));
 draw_text(x + 8, y + 16, string(point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_nearest(x, y, obj_gunDropped).y)));
 */
+#endregion

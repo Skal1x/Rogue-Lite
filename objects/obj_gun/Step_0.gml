@@ -1,8 +1,6 @@
-//Check if Player exists
 if (instance_exists(obj_player)) {
 
-	//Angle Of Gun
-
+	#region Graphics Controller
 	image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 
 	//Stay On Player
@@ -16,33 +14,40 @@ if (instance_exists(obj_player)) {
 	} else {
 		instance_destroy();
 	}
+	
 	//Stay in Front of Player
-
 	depth = -y -10;
 
 	//Rotate according to Mouse Position
-
 	if (image_angle >= 90 && image_angle <= 270) {
 		image_yscale = -1;
 	} else {
 		image_yscale = 1;
 	}
-
-	//Stop Repeating Empty Sound
+	
+	//Change Image when Cycling (Bolt/Pump-Action)
+	if (obj_player.singleReloading) {
+		image_index = 2;
+	}
+	#endregion
+	
+	#region Full-Auto Empty Fire Sound Cancel
 	if (holdPressed) {
 		if (mouse_check_button_released(mb_left)) {
 			holdPressed = false;
 		}
 	}
+	#endregion
 
-	//Shooting
-
+	#region Shooting
 	switch (obj_player.fireMode) {
+		
+		#region Full-Auto
 		case 0: // Full-Auto
 		if (mouse_check_button(mb_left) && obj_player.gunState == 0) {
 			if (obj_player.curMag > 0) {
 				if (obj_player.fireReady) {
-					//Shooot Booollet
+					#region Shoot Bullet
 					obj_player.curMag--;
 					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
@@ -83,22 +88,28 @@ if (instance_exists(obj_player)) {
 					obj_player.fireReady = false;
 					obj_player.curFireCooldown = obj_player.fireRate;
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
+					#endregion
 				}
 			} else {
+				#region Empty Fire
 				if (!holdPressed)
 				if (obj_player.gunType != 0) {
 					audio_play_sound(snd_gunEmpty,1,0);
 					holdPressed = true;
 					obj_ammoDisplay.emptyFire = true;
 				}
+				#endregion
 			}
 		}
-			break;
+		break;
+		#endregion
+		
+		#region Burst-Fire
 		case 1: // Burst
 		if (obj_player.fireReady) {
 			if (obj_player.curMag > 0) {
 				if (obj_player.curBurst > 0) {
-					//Shooot Booollet
+					#region Shoot Bullet
 					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var j = 0; j < bulletsPerShot; j++) {
@@ -139,9 +150,10 @@ if (instance_exists(obj_player)) {
 					obj_player.curMag--;
 					obj_player.fireReady = false;
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
+					#endregion
 				} else {
+					#region Initiate Burst and Shoot Bullet
 					if (mouse_check_button_pressed(mb_left)) {
-						//Start Burst AND Shooot Booollet
 						obj_player.curBurst = obj_player.burstAmount;
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
@@ -185,20 +197,26 @@ if (instance_exists(obj_player)) {
 						obj_player.fireReady = false;
 						instance_create_depth(x,y,-y,obj_gunSoundQue);
 					}
+					#endregion
 				}
 			} else {
+				#region Empty Fire
 				if (mouse_check_button_pressed(mb_left)) {
 					audio_play_sound(snd_gunEmpty,1,0);
 					obj_ammoDisplay.emptyFire = true;
 				}
+				#endregion
 			}
 		}
-			break;
+		break;
+		#endregion
+		
+		#region Semi-Auto
 		case 2: // Semi-Auto
 		if (mouse_check_button_pressed(mb_left) && obj_player.gunState == 0) {
 			if (obj_player.curMag > 0) {
 				if (obj_player.fireReady) {
-					//Shooot Booollet
+					#region Shoot Bullet
 					obj_player.curMag--;
 					if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
@@ -240,18 +258,25 @@ if (instance_exists(obj_player)) {
 					obj_player.fireReady = false;
 					obj_player.curFireCooldown = obj_player.fireRate;
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
+					#endregion
 				}
 			} else {
+				#region Empty Fire
 				audio_play_sound(snd_gunEmpty,1,0);
 				obj_ammoDisplay.emptyFire = true;
+				#endregion
 			}
 		}
 		break;
+		#endregion
+		
+		#region Single Fire Reload
 		case 3: // Single Shot Reload
 		if (obj_player.fireReady) {
 			if (singleReloaded) {
 				if (obj_player.curMag > 0) {
 					if (mouse_check_button_pressed(mb_left)) {
+						#region Shoot Bullet
 						obj_player.curMag--;
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
@@ -276,27 +301,31 @@ if (instance_exists(obj_player)) {
 						obj_player.curFireCooldown = obj_player.fireRate;
 						instance_create_depth(x,y,-y,obj_gunSoundQue);
 						singleReloaded = false;
+						#endregion
 					}
 				} else {
+					#region Empty Fire Empty Mag
 					if (mouse_check_button_pressed(mb_left)) {
 						audio_play_sound(snd_gunEmpty,1,0);
 						obj_ammoDisplay.emptyFire = true;
 					}
+					#endregion
 				}
 			} else {
+				#region Empty Fire Empty Chamber
 				if (mouse_check_button_pressed(mb_left)) {
 					audio_play_sound(snd_gunEmpty,1,0);
 					obj_ammoDisplay.emptyFire = true;
 				}
+				#endregion
 			}
 		}
-			break;
+		break;
+		#endregion
 	}
+	#endregion
 
-	if (obj_player.singleReloading) {
-		image_index = 2;
-	}
-
+	#region Sprite Updater
 	slot = obj_player.slot;
 
 	switch (obj_player.inv[slot, 1]) {
@@ -361,6 +390,8 @@ if (instance_exists(obj_player)) {
 			}
 			break;
 	}
+	#endregion
+	
 } else {
 	instance_destroy();
 }
