@@ -1,10 +1,11 @@
-bulletSpeed = obj_player.projectileSpeed;
-range = obj_player.projectileRange;
-damage = obj_player.bulletDamage;
-expSize = obj_player.expRadius;
-expDamage = obj_player.expDamage;
+bulletSpeed = obj_player.inv[obj_player.slot, 12];
+range = obj_player.inv[obj_player.slot, 13];
+damage = obj_player.inv[obj_player.slot, 11];
+expSize = obj_player.inv[obj_player.slot, 34];
+expDamage = obj_player.inv[obj_player.slot, 35];
+curFireInacc = obj_player.curFireInacc;
 destroy = false;
-dir = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y) + random_range(- obj_player.spread, obj_player.spread) + random_range(-(abs(obj_player.vsp) * 10 + abs(obj_player.hsp) * 10),(abs(obj_player.vsp) * 10 + abs(obj_player.hsp) * 10));
+dir = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y) + random_range(- obj_player.inv[obj_player.slot, 5], obj_player.inv[obj_player.slot, 5]) + random_range(-(abs(obj_player.vsp) * 10 + abs(obj_player.hsp) * 10),(abs(obj_player.vsp) * 10 + abs(obj_player.hsp) * 10) + random_range(-curFireInacc,curFireInacc));
 radian = dir * (pi / 180);
 stepX = cos(radian);
 stepY = sin(radian) * -1;

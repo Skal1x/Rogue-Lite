@@ -34,6 +34,7 @@ stats[32] = 0;		//Remaining Single-Shot Reload Time (Pump/Bolt-Action only)
 stats[33] = 4;		//Gun Rarity
 stats[34] = 45;		//Explosion Radius
 stats[35] = 10;		//Explosion Damage
+stats[36] = 8;		//Fire Inaccuracy
 
 switch (stats[1]) {
 	case 0:

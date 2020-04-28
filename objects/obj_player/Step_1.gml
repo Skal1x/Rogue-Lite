@@ -98,30 +98,30 @@ if (hp <= 0) {
 #endregion
 
 #region Perfect Reload Time Calculation
-exeReloadStart = reloadTime / 2;
-exeReloadStop = reloadTime / 2 - reloadTime / 4;
+inv[slot, 24] = inv[slot, 22] / 2;
+inv[slot, 25] = inv[slot, 22] / 2 - inv[slot, 22] / 4;
 
-exeSingleReloadStart = singleReloadTime / 2;
-exeSingleReloadStop = singleReloadTime / 2 - singleReloadTime / 4;
+inv[slot, 26] = inv[slot, 23] / 2;
+inv[slot, 27] = inv[slot, 23] / 2 - inv[slot, 23] / 4;
 #endregion
 
 #region Reloading Generic
-if (gunState == 0 && keyboard_check_pressed(vk_lcontrol)) {
-	curMag = 0;
-	ejecting = true;
-	ejectTimer = ejectSpeed;
-	gunState++;
+if (inv[slot, 18] == 0 && keyboard_check_pressed(vk_lcontrol)) {
+	inv[slot, 3] = 0;
+	inv[slot, 20] = true;
+	inv[slot, 21] = inv[slot, 19];
+	inv[slot, 18]++;
 }
 
-if (gunState == 1 && keyboard_check_pressed(ord("R")) && !ejecting) {
-	curReload = reloadTime;
-	gunState++;
+if (inv[slot, 18] == 1 && keyboard_check_pressed(ord("R")) && !inv[slot, 20]) {
+	inv[slot, 31] = inv[slot, 22];
+	inv[slot, 18]++;
 }
 
-if (gunState == 0 && fireMode == 3 && obj_gun.singleReloaded == false && fireReady == true) {
+if (inv[slot, 18] == 0 && inv[slot, 7] == 3 && obj_gun.singleReloaded == false && inv[slot, 16] == true) {
 	if (keyboard_check_pressed(ord("R"))) {
-		curSingleReload = singleReloadTime;
-		singleReloading = true;
+		inv[slot, 32] = inv[slot, 23];
+		inv[slot, 28] = true;
 		with (instance_create_depth(obj_gun.x, obj_gun.y, -y-2, obj_bulletShell)) {
 			switch (obj_player.inv[obj_player.slot, 14]) {
 				case 0: sprite_index = spr_ammoSmallShell; break;
@@ -145,72 +145,72 @@ if (gunState == 0 && fireMode == 3 && obj_gun.singleReloaded == false && fireRea
 #endregion
 
 #region Reload Countdown
-if (curReload > 0 && gunState == 2) {
+if (inv[slot, 31] > 0 && inv[slot, 18] == 2) {
 	if (keyboard_check_pressed(ord("F"))) {
-		if (curReload < exeReloadStart && curReload > exeReloadStop && !reloadFailed) {
-			curReload = 1;
+		if (inv[slot, 31] < inv[slot, 24] && inv[slot, 31] > inv[slot, 25] && !inv[slot, 30]) {
+			inv[slot, 31] = 1;
 		} else {
-			 reloadFailed = true;
+			 inv[slot, 30] = true;
 		}
 	}
-	curReload--;
+	inv[slot, 31]--;
 }
 
-if (curReload == 0 && gunState == 2) {
-	gunState = 0;
-	if (curAmmo >= maxMag) {
-		curMag = maxMag;
-		curAmmo -= maxMag;
+if (inv[slot, 31] == 0 && inv[slot, 18] == 2) {
+	inv[slot, 18] = 0;
+	if (inv[slot, 4] >= inv[slot, 2]) {
+		inv[slot, 3] = inv[slot, 2];
+		inv[slot, 4] -= inv[slot, 2];
 	} else {
-		curMag = curAmmo;
-		curAmmo = 0;
+		inv[slot, 3] = inv[slot, 4];
+		inv[slot, 4] = 0;
 	}
-	reloadFailed = false;
+	inv[slot, 30] = false;
 }
 #endregion
 
-#region Single-Shit Reload (Pump/Bolt-Action)
-if (curSingleReload > 0 && singleReloading) {
+#region Single-Shot Reload (Pump/Bolt-Action)
+if (inv[slot, 32] > 0 && inv[slot, 28]) {
 	if (keyboard_check_pressed(ord("F"))) {
-		if (curSingleReload < exeSingleReloadStart && curSingleReload > exeSingleReloadStop && !singleReloadFailed) {
-			curSingleReload = 1;
+		if (inv[slot, 32] < inv[slot, 26] && inv[slot, 32] > inv[slot, 27] && !inv[slot, 29]) {
+			inv[slot, 32] = 1;
 		} else {
-			 singleReloadFailed = true;
+			 inv[slot, 29] = true;
 		}
 	}
-	curSingleReload--;
-	if (curSingleReload == 0) {
-		gunState = 3;
+	inv[slot, 32]--;
+	if (inv[slot, 32] == 0) {
+		inv[slot, 18] = 3;
 	}
 }
 
-if (gunState == 3 && singleReloading) {
+if (inv[slot, 18] == 3 && inv[slot, 28]) {
 	obj_gun.singleReloaded = true;
 	obj_gun.image_index = 0;
-	singleReloadFailed = false;
-	singleReloading = false;
-	gunState = 0;
+	inv[slot, 29] = false;
+	inv[slot, 28] = false;
+	inv[slot, 18] = 0;
 }
 #endregion
 
 #region Fire Delay
-if (!fireReady) {
-	if (curFireCooldown > 0) {
-		curFireCooldown--;
+if (!inv[slot, 16]) {
+	if (inv[slot, 17] > 0) {
+		inv[slot, 17]--;
 	} else {
-		fireReady = true;
-		curFireCooldown = fireRate;
+		inv[slot, 16] = true;
+		inv[slot, 17] = inv[slot, 6];
 	}
 }
 #endregion
 
 #region Ejection Timer
-if (ejecting) {
-	if (ejectTimer > 0) {
-		ejectTimer--;
+if (inv[slot, 20]) {
+	if (inv[slot, 21]> 0) {
+		inv[slot, 21]--;
 	} else {
-		ejecting = false;
-		ejectTimer = ejectSpeed;
+		inv[slot, 20] = false;
+		inv[slot, 21] = inv[slot, 19];
 	}
 }
 #endregion
@@ -223,7 +223,7 @@ if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_near
 	
 		if (inv[slot, 1] != 0) {
 			with (instance_create_depth(x,y,-y,obj_gunDropped)) {
-				for (var i = 0; i <= 35; i++) {
+				for (var i = 0; i <= 36; i++) {
 					stats[i] = obj_player.inv[obj_player.slot, i];
 				}
 				switch (stats[1]) {
@@ -250,7 +250,7 @@ if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_near
 				}
 			}
 	
-			for (var j = 0; j <= 35; j++) {
+			for (var j = 0; j <= 36; j++) {
 				if (j == 0) {
 					inv[slot, j] = "EMPTY";
 				} else if (j == 16 || j == 20 || j == 28 || j == 29 || j == 30){
@@ -259,46 +259,9 @@ if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_near
 					inv[slot, j] = 0;
 				}
 			}
-	
-			name = "EMPTY";
-			gunType = 0;
-			maxMag = 0;
-			curMag = 0;
-			curAmmo = 0;
-			spread = 0;
-			fireRate = 0;
-			fireMode = 0;
-			burstAmount = 0;
-			curBurst = 0;
-			pelletAmount = 0;
-			bulletDamage = 0;
-			projectileSpeed = 0;
-			projectileRange = 0;
-			projectileType = 0;
-			randomEffect = 0;
-			fireReady = false;
-			curFireCooldown = 0;
-			gunState = 0;
-			ejectSpeed = 0;
-			ejecting = false;
-			ejectSpeed = 0;
-			reloadTime = 0;
-			singleReloadTime = 0;
-			exeReloadStart = 0;
-			exeReloadStop = 0;
-			exeSingleReloadStart = 0;
-			exeSingleReloadStop = 0;
-			singleReloading = false;
-			singleReloadFailed = false;
-			reloadFailed = false;
-			curReload = 0;
-			curSingleReload = 0;
-			rarity = 0;
-			expRadius = 0;
-			expDamage = 0;
 		}
 		
-		for (var i = 0; i <= 35; i++) {
+		for (var i = 0; i <= 36; i++) {
 			inv[slot, i] = switchWith.stats[i];
 		}
 		with (switchWith) {
@@ -316,159 +279,20 @@ if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_near
 if (slot == 0) {
 	if (mouse_wheel_down()) {
 		weaponSwitched = true;
-		
-		inv[slot, 3] = curMag;
-		inv[slot, 4] = curAmmo;
-		inv[slot, 9] = curBurst;
-		inv[slot, 16] = fireReady;
-		inv[slot, 17] = curFireCooldown;
-		inv[slot, 18] = gunState;
-		inv[slot, 20] = ejecting;
-		inv[slot, 21] = ejectTimer;
-		inv[slot, 28] = singleReloading;
-		inv[slot, 29] = singleReloadFailed;
-		inv[slot, 30] = reloadFailed;
-		inv[slot, 31] = curReload;
-		inv[slot, 32] = curSingleReload;
-		
 		slot = 1;
 	}
 } else {
 	if (mouse_wheel_up()) {
 		weaponSwitched = true;
-		
-		inv[slot, 3] = curMag;
-		inv[slot, 4] = curAmmo;
-		inv[slot, 9] = curBurst;
-		inv[slot, 16] = fireReady;
-		inv[slot, 17] = curFireCooldown;
-		inv[slot, 18] = gunState;
-		inv[slot, 20] = ejecting;
-		inv[slot, 21] = ejectTimer;
-		inv[slot, 28] = singleReloading;
-		inv[slot, 29] = singleReloadFailed;
-		inv[slot, 30] = reloadFailed;
-		inv[slot, 31] = curReload;
-		inv[slot, 32] = curSingleReload;
-		
 		slot = 0;
 	}
 }
 #endregion
 
-#region stat update
-if (weaponPickedUp || weaponSwitched) {
-	name = inv[slot, 0];
-	gunType = inv[slot, 1];
-	maxMag = inv[slot, 2];
-	curMag = inv[slot, 3];
-	curAmmo = inv[slot, 4];
-	spread = inv[slot, 5];
-	fireRate = inv[slot, 6];
-	fireMode = inv[slot, 7];
-	burstAmount = inv[slot, 8];
-	curBurst = inv[slot, 9];
-	pelletAmount = inv[slot, 10];
-	bulletDamage = inv[slot, 11];
-	projectileSpeed = inv[slot, 12];
-	projectileRange = inv[slot, 13];
-	projectileType = inv[slot, 14];
-	randomEffect = inv[slot, 15];
-	fireReady = inv[slot, 16];
-	curFireCooldown = inv[slot, 17];
-	gunState = inv[slot, 18];
-	ejectSpeed = inv[slot, 19];
-	ejecting = inv[slot, 20];
-	ejectSpeed = inv[slot, 21];
-	reloadTime = inv[slot, 22];
-	singleReloadTime = inv[slot, 23];
-	exeReloadStart = inv[slot, 24];
-	exeReloadStop = inv[slot, 25];
-	exeSingleReloadStart = inv[slot, 26];
-	exeSingleReloadStop = inv[slot, 27];
-	singleReloading = inv[slot, 28];
-	singleReloadFailed = inv[slot, 29];
-	reloadFailed = inv[slot, 30];
-	curReload = inv[slot, 31];
-	curSingleReload = inv[slot, 32];
-	rarity = inv[slot, 33];
-	expRadius = inv[slot, 34];
-	expDamage = inv[slot, 35];
-	
-	if (weaponPickedUp) weaponPickedUp = false;
-	if (weaponSwitched) weaponSwitched = false;
-}
-
-if (keyboard_check_pressed(vk_f9)) {
-	name = "EMPTY";
-	gunType = 0;
-	maxMag = 0;
-	curMag = 0;
-	curAmmo = 0;
-	spread = 0;
-	fireRate = 0;
-	fireMode = 0;
-	burstAmount = 0;
-	curBurst = 0;
-	pelletAmount = 0;
-	bulletDamage = 0;
-	projectileSpeed = 0;
-	projectileRange = 0;
-	projectileType = 0;
-	randomEffect = 0;
-	fireReady = false;
-	curFireCooldown = 0;
-	gunState = 0;
-	ejectSpeed = 0;
-	ejecting = false;
-	ejectSpeed = 0;
-	reloadTime = 0;
-	singleReloadTime = 0;
-	exeReloadStart = 0;
-	exeReloadStop = 0;
-	exeSingleReloadStart = 0;
-	exeSingleReloadStop = 0;
-	singleReloading = false;
-	singleReloadFailed = false;
-	reloadFailed = false;
-	curReload = 0;
-	curSingleReload = 0;
-	rarity = 0;
-	
-	for (var i = 0; i <= 1; i++) {
-		for (var j = 0; j <= 35; j++) {
-			if (j == 0) {
-				inv[i, j] = "EMPTY";
-			} else if (j == 16 || j == 20 || j == 28 || j == 29 || j == 30){
-				inv[i, j] = false;
-			} else {
-				inv[i, j] = 0;
-			}
-		}
-	}
-}
-#endregion
-
-#region Inventory Update
-inv[slot, 3] = curMag;
-inv[slot, 4] = curAmmo;
-inv[slot, 9] = curBurst;
-inv[slot, 16] = fireReady;
-inv[slot, 17] = curFireCooldown;
-inv[slot, 18] = gunState;
-inv[slot, 20] = ejecting;
-inv[slot, 21] = ejectTimer;
-inv[slot, 28] = singleReloading;
-inv[slot, 29] = singleReloadFailed;
-inv[slot, 30] = reloadFailed;
-inv[slot, 31] = curReload;
-inv[slot, 32] = curSingleReload;
-#endregion
-
 #region Weapon Dropping
 if (keyboard_check_pressed(ord("G"))) {
 	with (instance_create_depth(x,y,-y,obj_gunDropped)) {
-		for (var i = 0; i <= 35; i++) {
+		for (var i = 0; i <= 36; i++) {
 			stats[i] = obj_player.inv[obj_player.slot, i];
 		}
 		switch (stats[1]) {
@@ -495,7 +319,7 @@ if (keyboard_check_pressed(ord("G"))) {
 		}
 	}
 	
-	for (var j = 0; j <= 35; j++) {
+	for (var j = 0; j <= 36; j++) {
 		if (j == 0) {
 			inv[slot, j] = "EMPTY";
 		} else if (j == 16 || j == 20 || j == 28 || j == 29 || j == 30){
@@ -504,46 +328,20 @@ if (keyboard_check_pressed(ord("G"))) {
 			inv[slot, j] = 0;
 		}
 	}
-	
-	name = "EMPTY";
-	gunType = 0;
-	maxMag = 0;
-	curMag = 0;
-	curAmmo = 0;
-	spread = 0;
-	fireRate = 0;
-	fireMode = 0;
-	burstAmount = 0;
-	curBurst = 0;
-	pelletAmount = 0;
-	bulletDamage = 0;
-	projectileSpeed = 0;
-	projectileRange = 0;
-	projectileType = 0;
-	randomEffect = 0;
-	fireReady = false;
-	curFireCooldown = 0;
-	gunState = 0;
-	ejectSpeed = 0;
-	ejecting = false;
-	ejectSpeed = 0;
-	reloadTime = 0;
-	singleReloadTime = 0;
-	exeReloadStart = 0;
-	exeReloadStop = 0;
-	exeSingleReloadStart = 0;
-	exeSingleReloadStop = 0;
-	singleReloading = false;
-	singleReloadFailed = false;
-	reloadFailed = false;
-	curReload = 0;
-	curSingleReload = 0;
-	rarity = 0;
 }
 #endregion
 
 #region Fire Speed Reduction and Reset
 if (!place_meeting(x,y,obj_fire) && !dash) {
 	runSpeed = maxRunSpeed;
+}
+#endregion
+
+#region Fire Inaccuracy Build-Up
+if (curFireInacc > 0) {
+	curFireInacc -= 0.5;
+	if (curFireInacc < 0) {
+		curFireInacc = 0;
+	}
 }
 #endregion

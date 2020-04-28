@@ -36,11 +36,12 @@ stats[32] = curSingleReload;
 stats[33] = rarity;
 stats[34] = expRadius;
 stats[35] = expDamage;
+stats[36] = fireInacc;
 */
 #endregion
 
 #region Stats Setup
-stats[35] = 0;
+stats[36] = 0;
 
 //Set Stats
 stats[0] = "";		//Name
@@ -79,6 +80,7 @@ stats[32] = 0;		//Remaining Single-Shot Reload Time (Pump/Bolt-Action only)
 stats[33] = 0;		//Gun Rarity
 stats[34] = 0;		//Explosion Radius
 stats[35] = 0;		//Explosion Damage
+stats[36] = 0;		//Firing Inaccuracy
 #endregion
 
 #region Animation Cancel

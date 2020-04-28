@@ -34,6 +34,7 @@ stats[32] = 0;		//Remaining Single-Shot Reload Time (Pump/Bolt-Action only)
 stats[33] = 1;		//Gun Rarity
 stats[34] = 40;		//Gun Rarity
 stats[35] = 30;		//Gun Rarity
+stats[36] = 11;		//Fire Inaccuracy
 
 switch (stats[1]) {
 	case 0:

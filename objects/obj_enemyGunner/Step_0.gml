@@ -1,5 +1,5 @@
 #region Alert State Activation
-if (enemyState < 1) { 
+if (enemyState < 1 && instance_exists(obj_player)) { 
 	if ((distance_to_object(obj_gunSoundQue) <= 600) || (distance_to_object(obj_player) <= 50)) {
 		enemyState = 1; 
 		alarm[0] = 20;
@@ -74,12 +74,14 @@ switch (enemyState) {
 		break;
 	case 3: //Do the Pew
 		path_end();
-		if (fireCooldown == 0) {
-			with (instance_create_depth(x,y,-y,obj_enemyBullet)) {
-				image_angle = point_direction(x, y, obj_player.x, obj_player.y);
-				motion_set(image_angle, 2);
+		if (instance_exists(obj_player)) {
+			if (fireCooldown == 0) {
+				with (instance_create_depth(x,y,-y,obj_enemyBullet)) {
+					image_angle = point_direction(x, y, obj_player.x, obj_player.y);
+					motion_set(image_angle, 2);
+				}
+				fireCooldown = 180;
 			}
-			fireCooldown = 180;
 		}
 }
 #endregion

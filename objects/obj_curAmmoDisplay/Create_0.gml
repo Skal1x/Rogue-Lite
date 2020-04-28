@@ -1,1 +1,1 @@
-ammoReserve = obj_player.curAmmo;
+ammoReserve = obj_player.inv[obj_player.slot, 4];

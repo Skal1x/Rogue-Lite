@@ -11,6 +11,7 @@ dash = false;
 dashTimer = 0;
 allowDash = true;
 drawNotice = false;
+curFireInacc = 0;
 image_speed = 0.5;
 #endregion
 
@@ -20,9 +21,9 @@ weaponPickedUp = false;
 weaponSwitched = false;
 
 //Initialise Inventory
-inv[1, 35] = 0;
+inv[1, 36] = 0;
 for (var i = 0; i <= 1; i++) {
-	for (var j = 0; j <= 35; j++) {
+	for (var j = 0; j <= 36; j++) {
 		if (j == 0) {
 			inv[i, j] = "EMPTY";
 		} else if (j == 16 || j == 20 || j == 28 || j == 29 || j == 30){
@@ -73,92 +74,11 @@ LIST
 33 = Rarity / 0 = No Rarity; 1 = Standard; 2 = Remarkable; 3 = Abnormal; 4 = Experimental; 5 = [REDACTED]; 6 = SPECIAL
 34 = Explosion Radius
 35 = Explosion Damage
+36 = Firing Inaccuracy
 */
 #endregion
 
 #region Invulnerability
 invul = false;
 invulTimer = 0;
-#endregion
-
-#region Gun-Stats Basic
-name = "gun";
-gunType = 1;
-rarity = 0;
-#endregion
-
-#region Gun-Stats Generic
-maxMag = 24;
-curMag = 24;
-curAmmo = 240;
-spread = 16;
-fireRate = 10;
-fireMode = 0; // 0 = Full-Auto, 1 = Burst, 2 = Semi-Auto, 3 = Singlefire (Pump/Bolt)
-burstAmount = 3;
-curBurst = 0;
-pelletAmount = 0;
-bulletDamage = 1;
-projectileSpeed = 10;
-projectileRange = 300;
-projectileType = 0; // 0 = Small Ballistic, 1 = Large Ballistic, 2 = Shotgun/Buckshot, 3 = Explosive, 4 = Incendiary, 5 = Grenade
-randomEffect = 0; // 0 = No Effect, 1 = Self-Destruct
-fireReady = true;
-curFireCooldown = fireRate;
-expRadius = 0;
-#endregion
-
-#region Gun-Stats Reloading
-gunState = 0;
-ejectSpeed = 60;
-ejecting = false;
-ejectTimer = ejectSpeed;
-reloadTime = 140;
-singleReloadTime = 80;
-exeReloadStart = reloadTime / 2;
-exeReloadStop = reloadTime / 2 - reloadTime / 4;
-exeSingleReloadStart = singleReloadTime / 2;
-exeSingleReloadStop = singleReloadTime / 2 - singleReloadTime / 4;
-singleReloading = false;
-singleReloadFailed = false;
-reloadFailed = false;
-curReload = reloadTime;
-curSingleReload = singleReloadTime;
-#endregion
-
-#region Gun-Stat Reset
-name = "EMPTY";
-gunType = 0;
-maxMag = 0;
-curMag = 0;
-curAmmo = 0;
-spread = 0;
-fireRate = 0;
-fireMode = 0;
-burstAmount = 0;
-curBurst = 0;
-pelletAmount = 0;
-bulletDamage = 0;
-projectileSpeed = 0;
-projectileRange = 0;
-projectileType = 0;
-randomEffect = 0;
-fireReady = false;
-curFireCooldown = 0;
-gunState = 0;
-ejectSpeed = 0;
-ejecting = false;
-ejectSpeed = 0;
-reloadTime = 0;
-singleReloadTime = 0;
-exeReloadStart = 0;
-exeReloadStop = 0;
-exeSingleReloadStart = 0;
-exeSingleReloadStop = 0;
-singleReloading = false;
-singleReloadFailed = false;
-reloadFailed = false;
-curReload = 0;
-curSingleReload = 0;
-rarity = 0;
-expDamage = 0;
 #endregion

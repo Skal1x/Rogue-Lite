@@ -33,6 +33,7 @@ stats[30] = false;		//Perfect Reload Failed?
 stats[31] = 0;		//Remaining Reload Time
 stats[32] = 0;		//Remaining Single-Shot Reload Time (Pump/Bolt-Action only)
 stats[33] = 2;		//Gun Rarity
+stats[36] = 4;		//Fire Inaccuracy
 
 //Choose Right Sprite
 switch (stats[1]) {

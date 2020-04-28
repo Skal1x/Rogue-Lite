@@ -26,7 +26,7 @@ if (instance_exists(obj_player)) {
 	}
 	
 	//Change Image when Cycling (Bolt/Pump-Action)
-	if (obj_player.singleReloading) {
+	if (obj_player.inv[obj_player.slot, 28]) {
 		image_index = 2;
 	}
 	#endregion
@@ -40,20 +40,19 @@ if (instance_exists(obj_player)) {
 	#endregion
 
 	#region Shooting
-	switch (obj_player.fireMode) {
+	switch (obj_player.inv[obj_player.slot, 7]) {
 		
 		#region Full-Auto
 		case 0: // Full-Auto
-		if (mouse_check_button(mb_left) && obj_player.gunState == 0) {
-			if (obj_player.curMag > 0) {
-				if (obj_player.fireReady) {
+		if (mouse_check_button(mb_left) && obj_player.inv[obj_player.slot, 18] == 0) {
+			if (obj_player.inv[obj_player.slot, 3] > 0) {
+				if (obj_player.inv[obj_player.slot, 16]) {
 					#region Shoot Bullet
-					obj_player.curMag--;
+					obj_player.inv[obj_player.slot, 3]--;
 					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var j = 0; j < bulletsPerShot; j++) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-							bullet.spread = spread;
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot, 14]) {
 								case 0: obj_gameController.shakeAmount += 0.1; break;
@@ -82,18 +81,19 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
+					obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
 					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
-					obj_player.fireReady = false;
-					obj_player.curFireCooldown = obj_player.fireRate;
+					obj_player.inv[obj_player.slot, 16] = false;
+					obj_player.inv[obj_player.slot, 17] = obj_player.inv[obj_player.slot, 6];
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
 					#endregion
 				}
 			} else {
 				#region Empty Fire
 				if (!holdPressed)
-				if (obj_player.gunType != 0) {
+				if (obj_player.inv[obj_player.slot, 1] != 0) {
 					audio_play_sound(snd_gunEmpty,1,0);
 					holdPressed = true;
 					obj_ammoDisplay.emptyFire = true;
@@ -106,15 +106,14 @@ if (instance_exists(obj_player)) {
 		
 		#region Burst-Fire
 		case 1: // Burst
-		if (obj_player.fireReady) {
-			if (obj_player.curMag > 0) {
-				if (obj_player.curBurst > 0) {
+		if (obj_player.inv[obj_player.slot, 16]) {
+			if (obj_player.inv[obj_player.slot, 3] > 0) {
+				if (obj_player.inv[obj_player.slot, 9] > 0) {
 					#region Shoot Bullet
 					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var j = 0; j < bulletsPerShot; j++) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-							bullet.spread = spread;
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot, 14]) {
 								case 0: obj_gameController.shakeAmount += 0.1; break;
@@ -143,24 +142,24 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
+					obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
 					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
-					obj_player.curBurst--;
-					obj_player.curMag--;
-					obj_player.fireReady = false;
+					obj_player.inv[obj_player.slot, 9]--;
+					obj_player.inv[obj_player.slot, 3]--;
+					obj_player.inv[obj_player.slot, 16] = false;
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
 					#endregion
 				} else {
 					#region Initiate Burst and Shoot Bullet
 					if (mouse_check_button_pressed(mb_left)) {
-						obj_player.curBurst = obj_player.burstAmount;
+						obj_player.inv[obj_player.slot, 9] = obj_player.inv[obj_player.slot, 8];
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
 							if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 							for (var j = 0; j < bulletsPerShot; j++) {
 								var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-								bullet.spread = spread;
 								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 								switch (obj_player.inv[obj_player.slot, 14]) {
 									case 0: obj_gameController.shakeAmount += 0.1; break;
@@ -189,12 +188,13 @@ if (instance_exists(obj_player)) {
 								motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 							}
 						}
+						obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
 						audio_play_sound(snd_gunShotGeneric,1,0);
 						image_index = 1;
 						alarm[0] = 4;
-						obj_player.curBurst--;
-						obj_player.curMag--;
-						obj_player.fireReady = false;
+						obj_player.inv[obj_player.slot, 9]--;
+						obj_player.inv[obj_player.slot, 3]--;
+						obj_player.inv[obj_player.slot, 16] = false;
 						instance_create_depth(x,y,-y,obj_gunSoundQue);
 					}
 					#endregion
@@ -213,17 +213,16 @@ if (instance_exists(obj_player)) {
 		
 		#region Semi-Auto
 		case 2: // Semi-Auto
-		if (mouse_check_button_pressed(mb_left) && obj_player.gunState == 0) {
-			if (obj_player.curMag > 0) {
-				if (obj_player.fireReady) {
+		if (mouse_check_button_pressed(mb_left) && obj_player.inv[obj_player.slot, 18] == 0) {
+			if (obj_player.inv[obj_player.slot, 3] > 0) {
+				if (obj_player.inv[obj_player.slot, 16]) {
 					#region Shoot Bullet
-					obj_player.curMag--;
+					obj_player.inv[obj_player.slot, 3]--;
 					if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var j = 0; j < bulletsPerShot; j++) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-							bullet.spread = spread;
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot, 14]) {
 								case 0: obj_gameController.shakeAmount += 0.1; break;
@@ -252,11 +251,12 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
+					obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
 					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
-					obj_player.fireReady = false;
-					obj_player.curFireCooldown = obj_player.fireRate;
+					obj_player.inv[obj_player.slot, 16] = false;
+					obj_player.inv[obj_player.slot, 17] = obj_player.inv[obj_player.slot, 6];
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
 					#endregion
 				}
@@ -272,18 +272,17 @@ if (instance_exists(obj_player)) {
 		
 		#region Single Fire Reload
 		case 3: // Single Shot Reload
-		if (obj_player.fireReady) {
+		if (obj_player.inv[obj_player.slot, 16]) {
 			if (singleReloaded) {
-				if (obj_player.curMag > 0) {
+				if (obj_player.inv[obj_player.slot, 3] > 0) {
 					if (mouse_check_button_pressed(mb_left)) {
 						#region Shoot Bullet
-						obj_player.curMag--;
+						obj_player.inv[obj_player.slot, 3]--;
 						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
 							if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 							for (var j = 0; j < bulletsPerShot; j++) {
 								var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-								bullet.spread = spread;
 								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 								switch (obj_player.inv[obj_player.slot, 14]) {
 									case 0: obj_gameController.shakeAmount += 0.1; break;
@@ -294,11 +293,12 @@ if (instance_exists(obj_player)) {
 								}
 							}
 						}
+						obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
 						audio_play_sound(snd_gunShotGeneric,1,0);
 						image_index = 1;
 						alarm[0] = 4;
-						obj_player.fireReady = false;
-						obj_player.curFireCooldown = obj_player.fireRate;
+						obj_player.inv[obj_player.slot, 16] = false;
+						obj_player.inv[obj_player.slot, 17] = obj_player.inv[obj_player.slot, 6];
 						instance_create_depth(x,y,-y,obj_gunSoundQue);
 						singleReloaded = false;
 						#endregion

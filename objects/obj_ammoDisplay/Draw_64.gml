@@ -103,7 +103,7 @@ if (instance_exists(obj_player)) {
 							case 4: draw_sprite_ext(spr_ammoIncendiaryReload, 2, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 						}
 					} else {
-						if (relProg > obj_player.maxMag / 2 &&  relProg < (obj_player.maxMag / 2 + obj_player.maxMag / 4)) {
+						if (relProg > obj_player.inv[obj_player.slot, 2] / 2 &&  relProg < (obj_player.inv[obj_player.slot, 2] / 2 + obj_player.inv[obj_player.slot, 2] / 4)) {
 							switch (proType) {
 								case 0: draw_sprite_ext(spr_ammoSmallReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 								case 1: draw_sprite_ext(spr_ammoBigReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
@@ -133,7 +133,7 @@ if (instance_exists(obj_player)) {
 							case 4: draw_sprite_ext(spr_ammoIncendiaryReload, 2, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 						}
 					} else {
-						if (relProg > obj_player.maxMag / 2 && relProg < ( obj_player.maxMag / 2 + obj_player.maxMag / 4)) {
+						if (relProg > obj_player.inv[obj_player.slot, 2] / 2 && relProg < ( obj_player.inv[obj_player.slot, 2] / 2 + obj_player.inv[obj_player.slot, 2] / 4)) {
 							switch (proType) {
 								case 0: draw_sprite_ext(spr_ammoSmallReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 								case 1: draw_sprite_ext(spr_ammoBigReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
@@ -170,7 +170,7 @@ if (instance_exists(obj_player)) {
 							case 4: draw_sprite_ext(spr_ammoIncendiaryReload, 2, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 						}
 					} else {
-						if (singleRelProg > obj_player.maxMag / 2 &&  singleRelProg < (obj_player.maxMag / 2 + obj_player.maxMag / 4)) {
+						if (singleRelProg > obj_player.inv[obj_player.slot, 2] / 2 &&  singleRelProg < (obj_player.inv[obj_player.slot, 2] / 2 + obj_player.inv[obj_player.slot, 2] / 4)) {
 							switch (proType) {
 								case 0: draw_sprite_ext(spr_ammoSmallReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 								case 1: draw_sprite_ext(spr_ammoBigReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
@@ -200,7 +200,7 @@ if (instance_exists(obj_player)) {
 							case 4: draw_sprite_ext(spr_ammoIncendiaryReload, 2, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 						}
 					} else {
-						if (singleRelProg > obj_player.maxMag / 2 && singleRelProg < ( obj_player.maxMag / 2 + obj_player.maxMag / 4)) {
+						if (singleRelProg > obj_player.inv[obj_player.slot, 2] / 2 && singleRelProg < ( obj_player.inv[obj_player.slot, 2] / 2 + obj_player.inv[obj_player.slot, 2] / 4)) {
 							switch (proType) {
 								case 0: draw_sprite_ext(spr_ammoSmallReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
 								case 1: draw_sprite_ext(spr_ammoBigReload, 1, x + j * xMulti, y - i * yMulti, 5, 5, 0, c_white, 1); break;
