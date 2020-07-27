@@ -1,0 +1,9 @@
+image_speed = 0;
+image_index = 0;
+image_xscale = 1;
+image_yscale = 1;
+parent = 0;
+dir = 0;
+rad = 0;
+disX = 0;
+disY = 0;

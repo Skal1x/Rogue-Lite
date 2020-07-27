@@ -16,7 +16,7 @@ if (instance_exists(obj_player)) {
 	draw_line_width(mouse_x, mouse_y,lineOneX, lineOneY, 4);
 	draw_line_width(mouse_x, mouse_y,lineTwoX, lineTwoY, 4);
 	
-	draw_set_color(make_color_rgb(221, 4, 84));
+	draw_set_color(make_color_rgb(242, 95, 92));
 	draw_circle(mouse_x, mouse_y, 1, 0);
 	draw_line_width(mouse_x, mouse_y,lineOneX, lineOneY, 2);
 	draw_line_width(mouse_x, mouse_y,lineTwoX, lineTwoY, 2);

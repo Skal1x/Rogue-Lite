@@ -17,6 +17,6 @@ if (instance_exists(obj_player)) {
 	draw_text(x+224,y+104,string(round(obj_player.hp)) + "/" + string(maxHp));
 	draw_text(x+223,y+103,string(round(obj_player.hp)) + "/" + string(maxHp));
 	draw_text(x+222,y+102,string(round(obj_player.hp)) + "/" + string(maxHp));
-	draw_set_color(make_color_rgb(221,4,84));
+	draw_set_color(make_color_rgb(62, 146, 204));
 	draw_text(x+222,y+102,string(round(obj_player.hp)) + "/" + string(maxHp));
 }

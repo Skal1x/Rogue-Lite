@@ -14,3 +14,7 @@ startChase = false;
 path = path_add();
 lastX = x;
 fireCooldown = 0;
+
+with (instance_create_depth(x,y,-y, obj_enemyGun)) {
+	parent = other.id;
+}
