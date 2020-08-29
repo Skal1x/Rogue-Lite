@@ -11,10 +11,12 @@ lineTwoY = 0;
 lineTwoDir = 0;
 lineTwoRad = 0;
 
+/*
 curLineOneX = 0;
 curLineOneY = 0;
 curLineTwoX = 0;
 curLineTwoY = 0;
+*/
 
 curHsp = 0;
 curVsp = 0;

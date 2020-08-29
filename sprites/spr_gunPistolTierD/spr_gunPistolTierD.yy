@@ -1,92 +1,82 @@
 {
-    "id": "eff39e9c-6545-4368-8034-fe558fec2ad0",
-    "modelName": "GMSprite",
-    "mvc": "1.12",
-    "name": "spr_gunPistolTierD",
-    "For3D": false,
-    "HTile": false,
-    "VTile": false,
-    "bbox_bottom": 5,
-    "bbox_left": 1,
-    "bbox_right": 6,
-    "bbox_top": 2,
-    "bboxmode": 0,
-    "colkind": 1,
-    "coltolerance": 0,
-    "edgeFiltering": false,
-    "frames": [
-        {
-            "id": "5ccb1365-c5fd-4f21-ac5a-1860825175e5",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "eff39e9c-6545-4368-8034-fe558fec2ad0",
-            "compositeImage": {
-                "id": "61d3b9c6-b55f-4e6e-9ff4-ee153800e201",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "5ccb1365-c5fd-4f21-ac5a-1860825175e5",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "a7582828-11fe-42a7-9c4f-75a0f5f9ad10",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "5ccb1365-c5fd-4f21-ac5a-1860825175e5",
-                    "LayerId": "523baee1-5245-4fbd-a770-19d2c52da055"
-                }
-            ]
-        },
-        {
-            "id": "01d88b0d-fb76-4da7-8c52-7ea6f669472b",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "eff39e9c-6545-4368-8034-fe558fec2ad0",
-            "compositeImage": {
-                "id": "6304e8ef-ba83-4c56-960c-5b3d6608e3da",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "01d88b0d-fb76-4da7-8c52-7ea6f669472b",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "4fcb0a48-e03b-4d70-9ea9-7330a11084d9",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "01d88b0d-fb76-4da7-8c52-7ea6f669472b",
-                    "LayerId": "523baee1-5245-4fbd-a770-19d2c52da055"
-                }
-            ]
-        }
-    ],
-    "gridX": 0,
-    "gridY": 0,
-    "height": 8,
-    "layers": [
-        {
-            "id": "523baee1-5245-4fbd-a770-19d2c52da055",
-            "modelName": "GMImageLayer",
-            "mvc": "1.0",
-            "SpriteId": "eff39e9c-6545-4368-8034-fe558fec2ad0",
-            "blendMode": 0,
-            "isLocked": false,
-            "name": "default",
-            "opacity": 100,
-            "visible": true
-        }
-    ],
-    "origin": 4,
-    "originLocked": false,
-    "playbackSpeed": 15,
+  "bboxMode": 0,
+  "collisionKind": 1,
+  "type": 0,
+  "origin": 4,
+  "preMultiplyAlpha": false,
+  "edgeFiltering": false,
+  "collisionTolerance": 0,
+  "swfPrecision": 2.525,
+  "bbox_left": 1,
+  "bbox_right": 6,
+  "bbox_top": 2,
+  "bbox_bottom": 5,
+  "HTile": false,
+  "VTile": false,
+  "For3D": false,
+  "width": 8,
+  "height": 8,
+  "textureGroupId": {
+    "name": "Default",
+    "path": "texturegroups/Default",
+  },
+  "swatchColours": null,
+  "gridX": 0,
+  "gridY": 0,
+  "frames": [
+    {"compositeImage":{"FrameId":{"name":"5ccb1365-c5fd-4f21-ac5a-1860825175e5","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"5ccb1365-c5fd-4f21-ac5a-1860825175e5","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"LayerId":{"name":"523baee1-5245-4fbd-a770-19d2c52da055","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_gunPistolTierD","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"resourceVersion":"1.0","name":"5ccb1365-c5fd-4f21-ac5a-1860825175e5","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"01d88b0d-fb76-4da7-8c52-7ea6f669472b","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"01d88b0d-fb76-4da7-8c52-7ea6f669472b","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"LayerId":{"name":"523baee1-5245-4fbd-a770-19d2c52da055","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_gunPistolTierD","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"resourceVersion":"1.0","name":"01d88b0d-fb76-4da7-8c52-7ea6f669472b","tags":[],"resourceType":"GMSpriteFrame",},
+  ],
+  "sequence": {
+    "spriteId": {"name":"spr_gunPistolTierD","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},
+    "timeUnits": 1,
+    "playback": 1,
+    "playbackSpeed": 15.0,
     "playbackSpeedType": 0,
-    "premultiplyAlpha": false,
-    "sepmasks": false,
-    "swatchColours": null,
-    "swfPrecision": 2.525,
-    "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f",
-    "type": 0,
-    "width": 8,
-    "xorig": 4,
-    "yorig": 4
+    "autoRecord": true,
+    "volume": 1.0,
+    "length": 2.0,
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
+    "tracks": [
+      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"3633cb87-6e38-4c69-b63b-01782dac5ef0","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"5ccb1365-c5fd-4f21-ac5a-1860825175e5","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"298a986b-e1d4-47af-b968-a766adfac917","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"01d88b0d-fb76-4da7-8c52-7ea6f669472b","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
+    ],
+    "visibleRange": {"x":0.0,"y":0.0,},
+    "lockOrigin": false,
+    "showBackdrop": true,
+    "showBackdropImage": false,
+    "backdropImagePath": "",
+    "backdropImageOpacity": 0.5,
+    "backdropWidth": 1920,
+    "backdropHeight": 1080,
+    "backdropXOffset": 0.0,
+    "backdropYOffset": 0.0,
+    "xorigin": 4,
+    "yorigin": 4,
+    "eventToFunction": {},
+    "eventStubScript": null,
+    "parent": {"name":"spr_gunPistolTierD","path":"sprites/spr_gunPistolTierD/spr_gunPistolTierD.yy",},
+    "resourceVersion": "1.3",
+    "name": "",
+    "tags": [],
+    "resourceType": "GMSequence",
+  },
+  "layers": [
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"523baee1-5245-4fbd-a770-19d2c52da055","tags":[],"resourceType":"GMImageLayer",},
+  ],
+  "parent": {
+    "name": "Pistol",
+    "path": "folders/Sprites/Gameplay/Guns/Pistol.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spr_gunPistolTierD",
+  "tags": [],
+  "resourceType": "GMSprite",
 }

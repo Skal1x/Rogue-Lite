@@ -1,92 +1,82 @@
 {
-    "id": "21aeef1a-0907-4261-8bbe-6b9ab2a96d9b",
-    "modelName": "GMSprite",
-    "mvc": "1.12",
-    "name": "spr_healthbarHealth",
-    "For3D": false,
-    "HTile": false,
-    "VTile": false,
-    "bbox_bottom": 9,
-    "bbox_left": 0,
-    "bbox_right": 98,
-    "bbox_top": 0,
-    "bboxmode": 0,
-    "colkind": 1,
-    "coltolerance": 0,
-    "edgeFiltering": false,
-    "frames": [
-        {
-            "id": "46a8d669-b45d-416b-b307-18f60c646116",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "21aeef1a-0907-4261-8bbe-6b9ab2a96d9b",
-            "compositeImage": {
-                "id": "f0dda388-12b9-472f-8bde-1ea02373fe9d",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "46a8d669-b45d-416b-b307-18f60c646116",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "c73b012f-e75c-45ce-acd4-9a3cdef2755a",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "46a8d669-b45d-416b-b307-18f60c646116",
-                    "LayerId": "18388d47-7726-43b5-8ef3-5cf38b9fb264"
-                }
-            ]
-        },
-        {
-            "id": "67d097f5-9b96-46c9-8130-ed50f10cc6f5",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "21aeef1a-0907-4261-8bbe-6b9ab2a96d9b",
-            "compositeImage": {
-                "id": "c9509f08-302c-4463-97d7-e3283a07d30c",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "67d097f5-9b96-46c9-8130-ed50f10cc6f5",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "5b5e535c-0409-4303-9c57-d25eb05ed0a6",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "67d097f5-9b96-46c9-8130-ed50f10cc6f5",
-                    "LayerId": "18388d47-7726-43b5-8ef3-5cf38b9fb264"
-                }
-            ]
-        }
-    ],
-    "gridX": 13,
-    "gridY": 6,
-    "height": 10,
-    "layers": [
-        {
-            "id": "18388d47-7726-43b5-8ef3-5cf38b9fb264",
-            "modelName": "GMImageLayer",
-            "mvc": "1.0",
-            "SpriteId": "21aeef1a-0907-4261-8bbe-6b9ab2a96d9b",
-            "blendMode": 0,
-            "isLocked": false,
-            "name": "default",
-            "opacity": 100,
-            "visible": true
-        }
-    ],
-    "origin": 9,
-    "originLocked": false,
-    "playbackSpeed": 15,
+  "bboxMode": 0,
+  "collisionKind": 1,
+  "type": 0,
+  "origin": 9,
+  "preMultiplyAlpha": false,
+  "edgeFiltering": false,
+  "collisionTolerance": 0,
+  "swfPrecision": 2.525,
+  "bbox_left": 0,
+  "bbox_right": 98,
+  "bbox_top": 0,
+  "bbox_bottom": 9,
+  "HTile": false,
+  "VTile": false,
+  "For3D": false,
+  "width": 99,
+  "height": 10,
+  "textureGroupId": {
+    "name": "Default",
+    "path": "texturegroups/Default",
+  },
+  "swatchColours": null,
+  "gridX": 13,
+  "gridY": 6,
+  "frames": [
+    {"compositeImage":{"FrameId":{"name":"46a8d669-b45d-416b-b307-18f60c646116","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"46a8d669-b45d-416b-b307-18f60c646116","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"LayerId":{"name":"18388d47-7726-43b5-8ef3-5cf38b9fb264","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_healthbarHealth","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"resourceVersion":"1.0","name":"46a8d669-b45d-416b-b307-18f60c646116","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"67d097f5-9b96-46c9-8130-ed50f10cc6f5","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"67d097f5-9b96-46c9-8130-ed50f10cc6f5","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"LayerId":{"name":"18388d47-7726-43b5-8ef3-5cf38b9fb264","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_healthbarHealth","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"resourceVersion":"1.0","name":"67d097f5-9b96-46c9-8130-ed50f10cc6f5","tags":[],"resourceType":"GMSpriteFrame",},
+  ],
+  "sequence": {
+    "spriteId": {"name":"spr_healthbarHealth","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},
+    "timeUnits": 1,
+    "playback": 1,
+    "playbackSpeed": 15.0,
     "playbackSpeedType": 0,
-    "premultiplyAlpha": false,
-    "sepmasks": false,
-    "swatchColours": null,
-    "swfPrecision": 2.525,
-    "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f",
-    "type": 0,
-    "width": 99,
-    "xorig": -1,
-    "yorig": 0
+    "autoRecord": true,
+    "volume": 1.0,
+    "length": 2.0,
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
+    "tracks": [
+      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"05de86a7-f43a-4c40-bd68-2cfb12933a11","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"46a8d669-b45d-416b-b307-18f60c646116","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"eae8d386-4aa6-4c99-ad55-a922dffa9ace","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"67d097f5-9b96-46c9-8130-ed50f10cc6f5","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
+    ],
+    "visibleRange": {"x":0.0,"y":0.0,},
+    "lockOrigin": false,
+    "showBackdrop": true,
+    "showBackdropImage": false,
+    "backdropImagePath": "",
+    "backdropImageOpacity": 0.5,
+    "backdropWidth": 1920,
+    "backdropHeight": 1080,
+    "backdropXOffset": 0.0,
+    "backdropYOffset": 0.0,
+    "xorigin": -1,
+    "yorigin": 0,
+    "eventToFunction": {},
+    "eventStubScript": null,
+    "parent": {"name":"spr_healthbarHealth","path":"sprites/spr_healthbarHealth/spr_healthbarHealth.yy",},
+    "resourceVersion": "1.3",
+    "name": "",
+    "tags": [],
+    "resourceType": "GMSequence",
+  },
+  "layers": [
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"18388d47-7726-43b5-8ef3-5cf38b9fb264","tags":[],"resourceType":"GMImageLayer",},
+  ],
+  "parent": {
+    "name": "Health",
+    "path": "folders/Sprites/UI/Health.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spr_healthbarHealth",
+  "tags": [],
+  "resourceType": "GMSprite",
 }
