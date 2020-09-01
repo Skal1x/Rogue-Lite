@@ -13,3 +13,10 @@ startChase = false;
 path = path_add();
 lastX = x;
 didDamage = 0;
+sightDistance = 50;
+hearingDistance = 600;
+
+with (instance_create_depth(x,y,-y, obj_enemyHitBox)) {
+	parent = other.id;
+	sprite_index = other.sprite_index;
+}

@@ -1,6 +1,6 @@
 #region Alert State Activation
 if (enemyState < 1 && instance_exists(obj_player)) { 
-	if ((distance_to_object(obj_gunSoundQue) <= 600) || (distance_to_object(obj_player) <= 50)) {
+	if ((distance_to_object(obj_gunSoundQue) <= hearingDistance) || (!collision_line(x, y, obj_player.x, obj_player.y, obj_wall, 1, true) && (distance_to_object(obj_player) <= sightDistance))) {
 		enemyState = 1; 
 		alarm[0] = 20;
 	}
