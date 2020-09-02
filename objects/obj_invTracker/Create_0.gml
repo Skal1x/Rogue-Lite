@@ -1,2 +1,4 @@
 inv[35] = 0;
-slot = obj_player.slot;
+if (instance_exists(obj_player)) {
+	slot = obj_player.slot;
+}

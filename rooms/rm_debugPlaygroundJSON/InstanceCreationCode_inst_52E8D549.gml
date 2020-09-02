@@ -1,73 +1,12 @@
-gunState = {
-	general: {
-		name: "gun",
-		rarity: 1,
-		gType: "pistol",
-		magCap: 12,
-		ammoInMag: 12,
-		ammoInRes: 120,
-	},
-	stats: {
-		damage: 5,
-		fireRate: 10,
-		fireMode: "auto",
-		isSingleShot: false,
-		burst: {
-			size: 0,
-			remaining: 0,
-		},
-		pelletsPerShot: 1,
-		spread: 6,
-		fireInaccuracy: 7,
-		bullet: {
-			bType: 3,
-			bSpeed: 8,
-			bRange: 230,
-		},
-		randomEffect: 0,
-		explosion: {
-			radius: 160,
-			damage: 40,
-		},
-	},
-	status: {
-		state: 0,
-		fireReady: true,
-		fireReadyCD: 10,
-	},
-	reload: {
-		ejection: {
-			time: 80,
-			status: false,
-			timeRemaining: 80,
-		},
-		loading: {
-			time: 400,
-			hSTimeframeStart: 200,
-			hsTimeframeStop: 300,
-			timeRemaining: 400,
-			hSFailed: false,
-		},
-		chamber: {
-			time: 40,
-			hSTimeframeStart: 20,
-			hSTimeFrameStop: 30,
-			timeRemaining: 40,
-			hSFailed: false,
-		},
-	},
-};
-
-
 //Set Stats
 stats[0] = "Big Boom";		//Name
-stats[1] = 2;				//Type of Gun | 0 = No Gun; 1 = Pistol; 2 = MP; 3 = PDW; 4 = AR; 5 = Sniper; 6 = Shotgun; 7 = LMG;
-stats[2] = 12;				//Magazine Capacity
-stats[3] = 12;				//Current Ammo In Clip
-stats[4] = 120;				//Reserve Ammo
+stats[1] = 6;				//Type of Gun | 0 = No Gun; 1 = Pistol; 2 = MP; 3 = PDW; 4 = AR; 5 = Sniper; 6 = Shotgun; 7 = LMG;
+stats[2] = 8;				//Magazine Capacity
+stats[3] = 8;				//Current Ammo In Clip
+stats[4] = 80;				//Reserve Ammo
 stats[5] = 6;				//Spread
-stats[6] = 15;				//Fire Rate
-stats[7] = 0;				//Fire Mode | 0 = Full-Auto; 1 = Burst; 2 = Semi-Auto; 3 = Single-Shoit Reload (Pump/Bolt-Action);
+stats[6] = 10;				//Fire Rate
+stats[7] = 3;				//Fire Mode | 0 = Full-Auto; 1 = Burst; 2 = Semi-Auto; 3 = Single-Shoit Reload (Pump/Bolt-Action);
 stats[8] = 0;				//Amount of Shots per Burst
 stats[9] = 0;				//Shots remaining in current Burst
 stats[10] = 1;				//Amount of Pellets per Shot
@@ -94,8 +33,8 @@ stats[30] = false;		//Perfect Reload Failed?
 stats[31] = 0;		//Remaining Reload Time
 stats[32] = 0;		//Remaining Single-Shot Reload Time (Pump/Bolt-Action only)
 stats[33] = 1;		//Gun Rarity
-stats[34] = 240;
-stats[35] = 100;
+stats[34] = 200;
+stats[35] = 150;
 stats[36] = 7;		//Fire Inaccuracy
 
 //Choose Right Sprite

@@ -6,12 +6,13 @@ hsp = 0;
 vsp = 0;
 maxRunSpeed = 1.5;
 runSpeed = maxRunSpeed;
-drag =0.005;
+drag = 0.005;
 dash = false;
 dashTimer = 0;
 allowDash = true;
 drawNotice = false;
 curFireInacc = 0;
+invSize = 2;
 image_speed = 0.5;
 #endregion
 
@@ -20,6 +21,75 @@ slot = 0;
 weaponPickedUp = false;
 weaponSwitched = false;
 
+defaultGunState = {
+	general: {
+		name: "",
+		rarity: 0,
+		gType: "none",
+		magCap: 0,
+		ammoInMag: 0,
+		ammoInRes: 0,
+	},
+	stats: {
+		damage: 0,
+		fireRate: 0,
+		fireMode: "auto",
+		isSingleShot: false,
+		burst: {
+			size: 0,
+			remaining: 0,
+		},
+		pelletsPerShot: 0,
+		spread: 0,
+		fireInaccuracy: 0,
+		bullet: {
+			bType: 0,
+			bSpeed: 0,
+			bRange: 0,
+		},
+		randomEffect: 0,
+		explosion: {
+			radius: 0,
+			damage: 0,
+		},
+	},
+	status: {
+		state: 0,
+		fireReady: true,
+		fireReadyCD: 0,
+	},
+	reload: {
+		ejection: {
+			time: 0,
+			status: false,
+			timeRemaining: 0,
+		},
+		loading: {
+			time: 0,
+			inProcess: false,
+			hSTimeframeStart: 0,
+			hSTimeframeStop: 0,
+			timeRemaining: 0,
+			hSFailed: false,
+		},
+		chamber: {
+			time: 0,
+			inProcess: false,
+			hSTimeframeStart: 0,
+			hSTimeFrameStop: 0,
+			timeRemaining: 0,
+			hSFailed: false,
+		},
+	},
+};
+
+inv[invSize - 1] = noone;
+
+for (var i = 0; i < array_length(inv); i++) {
+	inv[i] = defaultGunState;
+}
+
+/*
 //Initialise Inventory
 inv[1, 36] = 0;
 for (var i = 0; i <= 1; i++) {
@@ -33,6 +103,7 @@ for (var i = 0; i <= 1; i++) {
 		}
 	}
 }
+*/
 #endregion
 
 #region Inventory Array Description List

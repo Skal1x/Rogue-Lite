@@ -23,8 +23,12 @@ curVsp = 0;
 
 xFactor = 1;
 yFactor = 1;
+dir = 0;
 
-dir = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
+if (instance_exists(obj_player)) {
+	dir = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
+}
+
 radian = dir * (pi / 180);
 stepX = cos(radian);
 stepY = sin(radian);

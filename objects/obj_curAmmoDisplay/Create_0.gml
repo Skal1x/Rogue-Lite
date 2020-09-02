@@ -1,1 +1,3 @@
-ammoReserve = obj_player.inv[obj_player.slot, 4];
+if (instance_exists(obj_player)) {
+	ammoReserve = obj_player.inv[obj_player.slot, 4];
+};
