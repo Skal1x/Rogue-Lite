@@ -148,8 +148,8 @@
   },
   "RoomOrder": [
     {"name":"rm_debugPlayground02","path":"rooms/rm_debugPlayground02/rm_debugPlayground02.yy",},
-    {"name":"rm_debugWalls01","path":"rooms/rm_debugWalls01/rm_debugWalls01.yy",},
     {"name":"rm_debugbulletCollision01","path":"rooms/rm_debugbulletCollision01/rm_debugbulletCollision01.yy",},
+    {"name":"rm_debugWalls01","path":"rooms/rm_debugWalls01/rm_debugWalls01.yy",},
     {"name":"rm_debugPlayground01","path":"rooms/rm_debugPlayground01/rm_debugPlayground01.yy",},
     {"name":"rm_debugCollision01","path":"rooms/rm_debugCollision01/rm_debugCollision01.yy",},
     {"name":"rm_debugPathFinding01","path":"rooms/rm_debugPathFinding01/rm_debugPathFinding01.yy",},
