@@ -66,7 +66,6 @@ defaultGunState = {
 		},
 		loading: {
 			time: 0,
-			inProcess: false,
 			hSTimeframeStart: 0,
 			hSTimeframeStop: 0,
 			timeRemaining: 0,

@@ -1,16 +1,16 @@
-if (instance_exists(obj_player)) {
+if (instance_exists(obj_playerJSON)) {
 
 	#region Graphics Controller
-	image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
+	image_angle = point_direction(obj_playerJSON.x,obj_playerJSON.y,mouse_x,mouse_y);
 
 	//Stay On Player
-	if (instance_exists(obj_player)) {
-		dir = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y) * (pi / 180);
+	if (instance_exists(obj_playerJSON)) {
+		dir = point_direction(obj_playerJSON.x,obj_playerJSON.y,mouse_x,mouse_y) * (pi / 180);
 		disX = cos(dir) * 6;
 		disY = sin(dir) * -1 * 6;
 	
-		x = obj_player.x + disX;
-		y = obj_player.y + disY;
+		x = obj_playerJSON.x + disX;
+		y = obj_playerJSON.y + disY;
 	} else {
 		instance_destroy();
 	}
@@ -26,7 +26,7 @@ if (instance_exists(obj_player)) {
 	}
 	
 	//Change Image when Cycling (Bolt/Pump-Action)
-	if (obj_player.inv[obj_player.slot, 28]) {
+	if (obj_playerJSON.inv[obj_playerJSON.slot].reload.chamber.inProcess) {
 		image_index = 2;
 	}
 	#endregion
@@ -40,21 +40,21 @@ if (instance_exists(obj_player)) {
 	#endregion
 
 	#region Shooting
-	switch (obj_player.inv[obj_player.slot, 7]) {
+	switch (obj_playerJSON.inv[obj_playerJSON.slot].stats.fireMode) {
 		
 		#region Full-Auto
-		case 0: // Full-Auto
-		if (mouse_check_button(mb_left) && obj_player.inv[obj_player.slot, 18] == 0) {
-			if (obj_player.inv[obj_player.slot, 3] > 0) {
-				if (obj_player.inv[obj_player.slot, 16]) {
+		case "auto": // Full-Auto
+		if (mouse_check_button(mb_left) && obj_playerJSON.inv[obj_playerJSON.slot, 18] == 0) {
+			if (obj_playerJSON.inv[obj_playerJSON.slot].general.ammoInMag > 0) {
+				if (obj_playerJSON.inv[obj_playerJSON.slot].status.fireReady) {
 					#region Shoot Bullet
-					obj_player.inv[obj_player.slot, 3]--;
-					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
-						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+					obj_playerJSON.inv[obj_playerJSON.slot].general.ammoInMag -= 1;
+					for (var i = 0; i < obj_playerJSON.inv[obj_playerJSON.slot].stats.pelletsPerShot; i++) {
+						if (obj_playerJSON.inv[obj_playerJSON.slot].stats.bullet.bType == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var j = 0; j < bulletsPerShot; j++) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
-							switch (obj_player.inv[obj_player.slot, 14]) {
+							bullet.image_angle = point_direction(obj_playerJSON.x,obj_playerJSON.y,mouse_x,mouse_y);
+							switch (obj_playerJSON.inv[obj_playerJSON.slot].stats.bullet.bType) {
 								case 0: obj_gameController.shakeAmount += 0.1; break;
 								case 1: obj_gameController.shakeAmount += 0.2; break;
 								case 2: obj_gameController.shakeAmount += 0.05; break;
@@ -64,7 +64,7 @@ if (instance_exists(obj_player)) {
 						}
 					}
 					with (instance_create_depth(x, y, -y-2, obj_bulletShell)) {
-						switch (obj_player.inv[obj_player.slot, 14]) {
+						switch (obj_playerJSON.inv[obj_playerJSON.slot].stats.bullet.bType) {
 							case 0: sprite_index = spr_ammoSmallShell; break;
 							case 1: sprite_index = spr_ammoBigShell; break;
 							case 2: sprite_index = spr_ammoShotgunShell; break;
@@ -81,19 +81,19 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
-					obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
+					obj_playerJSON.curFireInacc += obj_playerJSON.inv[obj_playerJSON.slot].stats.fireInaccuracy;
 					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
-					obj_player.inv[obj_player.slot, 16] = false;
-					obj_player.inv[obj_player.slot, 17] = obj_player.inv[obj_player.slot, 6];
+					obj_playerJSON.inv[obj_playerJSON.slot].status.fireReady = false;
+					obj_playerJSON.inv[obj_playerJSON.slot].status.fireReadyCD = obj_playerJSON.inv[obj_playerJSON.slot].stats.fireRate;
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
 					#endregion
 				}
 			} else {
 				#region Empty Fire
 				if (!holdPressed)
-				if (obj_player.inv[obj_player.slot, 1] != 0) {
+				if (obj_playerJSON.inv[obj_playerJSON.slot].general.gType != 0) {
 					audio_play_sound(snd_gunEmpty,1,0);
 					holdPressed = true;
 					obj_ammoDisplay.emptyFire = true;
@@ -105,17 +105,17 @@ if (instance_exists(obj_player)) {
 		#endregion
 		
 		#region Burst-Fire
-		case 1: // Burst
-		if (obj_player.inv[obj_player.slot, 16]) {
-			if (obj_player.inv[obj_player.slot, 3] > 0) {
-				if (obj_player.inv[obj_player.slot, 9] > 0) {
+		case "burst": // Burst
+		if (obj_playerJSON.inv[obj_playerJSON.slot].status.fireReady) {
+			if (obj_playerJSON.inv[obj_playerJSON.slot].general.ammoInMag > 0) {
+				if (obj_playerJSON.inv[obj_playerJSON.slot].stats.burst.remaining > 0) {
 					#region Shoot Bullet
-					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
-						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+					for (var i = 0; i < obj_playerJSON.inv[obj_playerJSON.slot].stats.pelletsPerShot; i++) {
+						if (obj_playerJSON.inv[obj_playerJSON.slot].stats.bullet.bType == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var j = 0; j < bulletsPerShot; j++) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
-							switch (obj_player.inv[obj_player.slot, 14]) {
+							bullet.image_angle = point_direction(obj_playerJSON.x,obj_playerJSON.y,mouse_x,mouse_y);
+							switch (obj_playerJSON.inv[obj_playerJSON.slot].stats.bullet.bType) {
 								case 0: obj_gameController.shakeAmount += 0.1; break;
 								case 1: obj_gameController.shakeAmount += 0.2; break;
 								case 2: obj_gameController.shakeAmount += 0.05; break;
@@ -125,7 +125,7 @@ if (instance_exists(obj_player)) {
 						}
 					}
 					with (instance_create_depth(x, y, -y-2, obj_bulletShell)) {
-						switch (obj_player.inv[obj_player.slot, 14]) {
+						switch (obj_playerJSON.inv[obj_playerJSON.slot].stats.bullet.bType) {
 							case 0: sprite_index = spr_ammoSmallShell; break;
 							case 1: sprite_index = spr_ammoBigShell; break;
 							case 2: sprite_index = spr_ammoShotgunShell; break;
@@ -142,26 +142,26 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
-					obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
+					obj_playerJSON.curFireInacc += obj_playerJSON.inv[obj_playerJSON.slot].stats.fireInaccuracy;
 					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
-					obj_player.inv[obj_player.slot, 9]--;
-					obj_player.inv[obj_player.slot, 3]--;
-					obj_player.inv[obj_player.slot, 16] = false;
+					obj_playerJSON.inv[obj_playerJSON.slot].stats.burst.remaining -= 1;
+					obj_playerJSON.inv[obj_playerJSON.slot].general.ammoInMag -= 1;
+					obj_playerJSON.inv[obj_playerJSON.slot].status.fireReady = false;
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
 					#endregion
 				} else {
 					#region Initiate Burst and Shoot Bullet
 					if (mouse_check_button_pressed(mb_left)) {
-						obj_player.inv[obj_player.slot, 9] = obj_player.inv[obj_player.slot, 8];
-						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
-						for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
-							if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+						obj_playerJSON.inv[obj_playerJSON.slot, 9] = obj_playerJSON.inv[obj_playerJSON.slot, 8];
+						if (obj_playerJSON.inv[obj_playerJSON.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+						for (var i = 0; i < obj_playerJSON.inv[obj_playerJSON.slot, 10]; i++) {
+							if (obj_playerJSON.inv[obj_playerJSON.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 							for (var j = 0; j < bulletsPerShot; j++) {
 								var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
-								switch (obj_player.inv[obj_player.slot, 14]) {
+								bullet.image_angle = point_direction(obj_playerJSON.x,obj_playerJSON.y,mouse_x,mouse_y);
+								switch (obj_playerJSON.inv[obj_playerJSON.slot, 14]) {
 									case 0: obj_gameController.shakeAmount += 0.1; break;
 									case 1: obj_gameController.shakeAmount += 0.2; break;
 									case 2: obj_gameController.shakeAmount += 0.05; break;
@@ -171,7 +171,7 @@ if (instance_exists(obj_player)) {
 							}
 						}
 						with (instance_create_depth(x, y, -y-2, obj_bulletShell)) {
-							switch (obj_player.inv[obj_player.slot, 14]) {
+							switch (obj_playerJSON.inv[obj_playerJSON.slot, 14]) {
 								case 0: sprite_index = spr_ammoSmallShell; break;
 								case 1: sprite_index = spr_ammoBigShell; break;
 								case 2: sprite_index = spr_ammoShotgunShell; break;
@@ -188,13 +188,13 @@ if (instance_exists(obj_player)) {
 								motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 							}
 						}
-						obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
+						obj_playerJSON.curFireInacc += obj_playerJSON.inv[obj_playerJSON.slot, 36];
 						audio_play_sound(snd_gunShotGeneric,1,0);
 						image_index = 1;
 						alarm[0] = 4;
-						obj_player.inv[obj_player.slot, 9]--;
-						obj_player.inv[obj_player.slot, 3]--;
-						obj_player.inv[obj_player.slot, 16] = false;
+						obj_playerJSON.inv[obj_playerJSON.slot, 9]--;
+						obj_playerJSON.inv[obj_playerJSON.slot, 3]--;
+						obj_playerJSON.inv[obj_playerJSON.slot, 16] = false;
 						instance_create_depth(x,y,-y,obj_gunSoundQue);
 					}
 					#endregion
@@ -213,18 +213,18 @@ if (instance_exists(obj_player)) {
 		
 		#region Semi-Auto
 		case 2: // Semi-Auto
-		if (mouse_check_button_pressed(mb_left) && obj_player.inv[obj_player.slot, 18] == 0) {
-			if (obj_player.inv[obj_player.slot, 3] > 0) {
-				if (obj_player.inv[obj_player.slot, 16]) {
+		if (mouse_check_button_pressed(mb_left) && obj_playerJSON.inv[obj_playerJSON.slot, 18] == 0) {
+			if (obj_playerJSON.inv[obj_playerJSON.slot, 3] > 0) {
+				if (obj_playerJSON.inv[obj_playerJSON.slot, 16]) {
 					#region Shoot Bullet
-					obj_player.inv[obj_player.slot, 3]--;
-					if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
-					for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
-						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+					obj_playerJSON.inv[obj_playerJSON.slot, 3]--;
+					if (obj_playerJSON.inv[obj_playerJSON.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+					for (var i = 0; i < obj_playerJSON.inv[obj_playerJSON.slot, 10]; i++) {
+						if (obj_playerJSON.inv[obj_playerJSON.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 						for (var j = 0; j < bulletsPerShot; j++) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
-							switch (obj_player.inv[obj_player.slot, 14]) {
+							bullet.image_angle = point_direction(obj_playerJSON.x,obj_playerJSON.y,mouse_x,mouse_y);
+							switch (obj_playerJSON.inv[obj_playerJSON.slot, 14]) {
 								case 0: obj_gameController.shakeAmount += 0.1; break;
 								case 1: obj_gameController.shakeAmount += 0.2; break;
 								case 2: obj_gameController.shakeAmount += 0.05; break;
@@ -234,7 +234,7 @@ if (instance_exists(obj_player)) {
 						}
 					}
 					with (instance_create_depth(x, y, -y-2, obj_bulletShell)) {
-						switch (obj_player.inv[obj_player.slot, 14]) {
+						switch (obj_playerJSON.inv[obj_playerJSON.slot, 14]) {
 							case 0: sprite_index = spr_ammoSmallShell; break;
 							case 1: sprite_index = spr_ammoBigShell; break;
 							case 2: sprite_index = spr_ammoShotgunShell; break;
@@ -251,12 +251,12 @@ if (instance_exists(obj_player)) {
 							motion_add(other.image_angle + 90 + random_range(-15,15), 0.5 + random_range(0,1));
 						}
 					}
-					obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
+					obj_playerJSON.curFireInacc += obj_playerJSON.inv[obj_playerJSON.slot, 36];
 					audio_play_sound(snd_gunShotGeneric,1,0);
 					image_index = 1;
 					alarm[0] = 4;
-					obj_player.inv[obj_player.slot, 16] = false;
-					obj_player.inv[obj_player.slot, 17] = obj_player.inv[obj_player.slot, 6];
+					obj_playerJSON.inv[obj_playerJSON.slot, 16] = false;
+					obj_playerJSON.inv[obj_playerJSON.slot, 17] = obj_playerJSON.inv[obj_playerJSON.slot, 6];
 					instance_create_depth(x,y,-y,obj_gunSoundQue);
 					#endregion
 				}
@@ -272,19 +272,19 @@ if (instance_exists(obj_player)) {
 		
 		#region Single Fire Reload
 		case 3: // Single Shot Reload
-		if (obj_player.inv[obj_player.slot, 16]) {
+		if (obj_playerJSON.inv[obj_playerJSON.slot, 16]) {
 			if (singleReloaded) {
-				if (obj_player.inv[obj_player.slot, 3] > 0) {
+				if (obj_playerJSON.inv[obj_playerJSON.slot, 3] > 0) {
 					if (mouse_check_button_pressed(mb_left)) {
 						#region Shoot Bullet
-						obj_player.inv[obj_player.slot, 3]--;
-						if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
-						for (var i = 0; i < obj_player.inv[obj_player.slot, 10]; i++) {
-							if (obj_player.inv[obj_player.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+						obj_playerJSON.inv[obj_playerJSON.slot, 3]--;
+						if (obj_playerJSON.inv[obj_playerJSON.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
+						for (var i = 0; i < obj_playerJSON.inv[obj_playerJSON.slot, 10]; i++) {
+							if (obj_playerJSON.inv[obj_playerJSON.slot, 14] == 2) var bulletsPerShot = 3; else var bulletsPerShot = 1;
 							for (var j = 0; j < bulletsPerShot; j++) {
 								var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
-								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
-								switch (obj_player.inv[obj_player.slot, 14]) {
+								bullet.image_angle = point_direction(obj_playerJSON.x,obj_playerJSON.y,mouse_x,mouse_y);
+								switch (obj_playerJSON.inv[obj_playerJSON.slot, 14]) {
 									case 0: obj_gameController.shakeAmount += 0.1; break;
 									case 1: obj_gameController.shakeAmount += 0.2; break;
 									case 2: obj_gameController.shakeAmount += 0.05; break;
@@ -293,12 +293,12 @@ if (instance_exists(obj_player)) {
 								}
 							}
 						}
-						obj_player.curFireInacc += obj_player.inv[obj_player.slot, 36];
+						obj_playerJSON.curFireInacc += obj_playerJSON.inv[obj_playerJSON.slot, 36];
 						audio_play_sound(snd_gunShotGeneric,1,0);
 						image_index = 1;
 						alarm[0] = 4;
-						obj_player.inv[obj_player.slot, 16] = false;
-						obj_player.inv[obj_player.slot, 17] = obj_player.inv[obj_player.slot, 6];
+						obj_playerJSON.inv[obj_playerJSON.slot, 16] = false;
+						obj_playerJSON.inv[obj_playerJSON.slot, 17] = obj_playerJSON.inv[obj_playerJSON.slot, 6];
 						instance_create_depth(x,y,-y,obj_gunSoundQue);
 						singleReloaded = false;
 						#endregion
@@ -326,14 +326,14 @@ if (instance_exists(obj_player)) {
 	#endregion
 
 	#region Sprite Updater
-	slot = obj_player.slot;
+	slot = obj_playerJSON.slot;
 
-	switch (obj_player.inv[slot, 1]) {
+	switch (obj_playerJSON.inv[slot, 1]) {
 		case 0:
 			sprite_index = spr_gunNoGun;
 			break;
 		case 1:
-			switch (obj_player.inv[slot, 33]) {
+			switch (obj_playerJSON.inv[slot, 33]) {
 				case 1: //Standard
 					sprite_index = spr_gunPistolTierE;
 					break;
@@ -352,7 +352,7 @@ if (instance_exists(obj_player)) {
 			}
 			break;
 		case 2:
-			switch (obj_player.inv[slot, 33]) {
+			switch (obj_playerJSON.inv[slot, 33]) {
 				case 1: //Standard
 					sprite_index = spr_gunMPTierE;
 					break;
@@ -371,7 +371,7 @@ if (instance_exists(obj_player)) {
 			}
 			break;
 		case 6:
-			switch (obj_player.inv[slot, 33]) {
+			switch (obj_playerJSON.inv[slot, 33]) {
 				case 1: //Standard
 					sprite_index = spr_gunShotgunTierE;
 					break;

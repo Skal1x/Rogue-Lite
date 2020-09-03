@@ -186,33 +186,33 @@ if (inv[slot].reload.chamber.timeRemaining > 0 && inv[slot].reload.chamber.inPro
 	}
 }
 
-if (inv[slot, 18] == 3 && inv[slot, 28]) {
-	obj_gun.singleReloaded = true;
-	obj_gun.image_index = 0;
-	inv[slot, 29] = false;
-	inv[slot, 28] = false;
-	inv[slot, 18] = 0;
+if (inv[slot].status.state == 3 && inv[slot].reload.chamber.inProcess) {
+	obj_gunJSON.singleReloaded = true;
+	obj_gunJSON.image_index = 0;
+	inv[slot].reload.chamber.hSFailed = false;
+	inv[slot].reload.chamber.inProcess = false;
+	inv[slot].status.state = 0;
 }
 #endregion
 
 #region Fire Delay
-if (!inv[slot, 16]) {
-	if (inv[slot, 17] > 0) {
-		inv[slot, 17]--;
+if (!inv[slot].status.fireReady) {
+	if (inv[slot].status.fireReadyCD > 0) {
+		inv[slot].status.fireReadyCD--;
 	} else {
-		inv[slot, 16] = true;
-		inv[slot, 17] = inv[slot, 6];
+		inv[slot].status.fireReady = true;
+		inv[slot].status.fireReadyCD = inv[slot].stats.fireRate;
 	}
 }
 #endregion
 
 #region Ejection Timer
-if (inv[slot, 20]) {
-	if (inv[slot, 21]> 0) {
-		inv[slot, 21]--;
+if (inv[slot].reload.ejection.status) {
+	if (inv[slot].reload.ejection.timeRemaining > 0) {
+		inv[slot].reload.ejection.timeRemaining -= 1;
 	} else {
-		inv[slot, 20] = false;
-		inv[slot, 21] = inv[slot, 19];
+		inv[slot].reload.ejection.status = false;
+		inv[slot].reload.ejection.timeRemaining = inv[slot].reload.ejection.time;
 	}
 }
 #endregion
@@ -223,27 +223,25 @@ if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_near
 	if (keyboard_check_pressed(ord("Q"))) {
 		switchWith = instance_nearest(x,y,obj_gunDropped);
 	
-		if (inv[slot, 1] != 0) {
+		if (inv[slot].general.gType != 0) {
 			with (instance_create_depth(x,y,-y,obj_gunDropped)) {
-				for (var i = 0; i <= 36; i++) {
-					stats[i] = obj_player.inv[obj_player.slot, i];
-				}
-				switch (stats[1]) {
+				gunState = obj_playerJSON.inv[obj_playerJSON.slot];
+				switch (gunState.general.gType) {
 				case 0:
 					sprite_index = spr_gunNoGun; break;
-				case 1: switch (stats[33]) {
+				case 1: switch (gunState.general.rarity) {
 						case 1: /*Standard*/ sprite_index = spr_gunPistolTierE; break;
 						case 2: /*Remarkable*/ sprite_index = spr_gunPistolTierD; break;
 						case 3: /*Abnormal*/ sprite_index = spr_gunPistolTierC; break;
 						case 4: /*Experimental*/ sprite_index = spr_gunPistolTierB; break;
 						case 5: /*[REDACTED]*/ sprite_index = spr_gunPistolTierA; break; } break;
-				case 2: switch (stats[33]) {
+				case 2: switch (gunState.general.rarity) {
 						case 1: /*Standard*/ sprite_index = spr_gunMPTierE; break;
 						case 2: /*Remarkable*/ sprite_index = spr_gunMPTierD; break;
 						case 3: /*Abnormal*/ sprite_index = spr_gunMPTierC; break;
 						case 4: /*Experimental*/ sprite_index = spr_gunMPTierB; break;
 						case 5: /*[REDACTED]*/ sprite_index = spr_gunMPTierA; break; } break;
-				case 6: switch (stats[33]) {
+				case 6: switch (gunState.general.rarity) {
 						case 1: /*Standard*/ sprite_index = spr_gunShotgunTierE; break;
 						case 2: /*Remarkable*/ sprite_index = spr_gunShotgunTierD; break;
 						case 3: /*Abnormal*/ sprite_index = spr_gunShotgunTierC; break;
@@ -252,23 +250,16 @@ if (point_distance(x, y, instance_nearest(x, y, obj_gunDropped).x, instance_near
 				}
 			}
 	
-			for (var j = 0; j <= 36; j++) {
-				if (j == 0) {
-					inv[slot, j] = "EMPTY";
-				} else if (j == 16 || j == 20 || j == 28 || j == 29 || j == 30){
-					inv[slot, j] = false;
-				} else {
-					inv[slot, j] = 0;
-				}
-			}
+			inv[slot] = defaultGunState;
 		}
 		
-		for (var i = 0; i <= 36; i++) {
-			inv[slot, i] = switchWith.stats[i];
-		}
+		
+		inv[slot] = switchWith.gunState;
+		
 		with (switchWith) {
 			instance_destroy();
 		}
+		
 		weaponPickedUp = true;
 		obj_ammoDisplay.weaponPicked = true;
 	}
@@ -294,25 +285,23 @@ if (slot == 0) {
 #region Weapon Dropping
 if (keyboard_check_pressed(ord("G"))) {
 	with (instance_create_depth(x,y,-y,obj_gunDropped)) {
-		for (var i = 0; i <= 36; i++) {
-			stats[i] = obj_player.inv[obj_player.slot, i];
-		}
-		switch (stats[1]) {
+		gunState = obj_playerJSON.inv[obj_playerJSON.slot];
+		switch (gunState.general.gType) {
 		case 0:
 			sprite_index = spr_gunNoGun; break;
-		case 1: switch (stats[33]) {
+		case 1: switch (gunState.general.rarity) {
 				case 1: /*Standard*/ sprite_index = spr_gunPistolTierE; break;
 				case 2: /*Remarkable*/ sprite_index = spr_gunPistolTierD; break;
 				case 3: /*Abnormal*/ sprite_index = spr_gunPistolTierC; break;
 				case 4: /*Experimental*/ sprite_index = spr_gunPistolTierB; break;
 				case 5: /*[REDACTED]*/ sprite_index = spr_gunPistolTierA; break; } break;
-		case 2: switch (stats[33]) {
+		case 2: switch (gunState.general.rarity) {
 				case 1: /*Standard*/ sprite_index = spr_gunMPTierE; break;
 				case 2: /*Remarkable*/ sprite_index = spr_gunMPTierD; break;
 				case 3: /*Abnormal*/ sprite_index = spr_gunMPTierC; break;
 				case 4: /*Experimental*/ sprite_index = spr_gunMPTierB; break;
 				case 5: /*[REDACTED]*/ sprite_index = spr_gunMPTierA; break; } break;
-		case 6: switch (stats[33]) {
+		case 6: switch (gunState.general.rarity) {
 				case 1: /*Standard*/ sprite_index = spr_gunShotgunTierE; break;
 				case 2: /*Remarkable*/ sprite_index = spr_gunShotgunTierD; break;
 				case 3: /*Abnormal*/ sprite_index = spr_gunShotgunTierC; break;
@@ -321,15 +310,7 @@ if (keyboard_check_pressed(ord("G"))) {
 		}
 	}
 	
-	for (var j = 0; j <= 36; j++) {
-		if (j == 0) {
-			inv[slot, j] = "EMPTY";
-		} else if (j == 16 || j == 20 || j == 28 || j == 29 || j == 30){
-			inv[slot, j] = false;
-		} else {
-			inv[slot, j] = 0;
-		}
-	}
+	inv[slot] = defaultGunState;
 }
 #endregion
 
