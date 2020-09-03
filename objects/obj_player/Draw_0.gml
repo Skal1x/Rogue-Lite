@@ -16,7 +16,7 @@ if (!invul) {
 #endregion
 
 #region Pick-Up Notice
-if (drawNotice) {
+if (drawNotice && instance_exists(obj_gunDropped)) {
 	draw_sprite_ext(spr_pickupNotice, 0, instance_nearest(x, y, obj_gunDropped).x, instance_nearest(x, y, obj_gunDropped).y -8 , 0.6, 0.6, 0, c_white, 1);
 }
 #endregion

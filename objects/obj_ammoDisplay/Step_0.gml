@@ -1,6 +1,6 @@
-if (instance_exists(obj_player)) {
-	if (ammo != obj_player.inv[obj_player.slot, 3]) {
-		if (ammo != obj_player.inv[obj_player.slot, 3] + 1) {
+if (isLoaded && instance_exists(obj_player)) {
+	if (ammo != obj_player.inv[obj_player.slot].general.ammoInMag) {
+		if (ammo != obj_player.inv[obj_player.slot].general.ammoInMag + 1) {
 			if (curSlot == obj_player.slot && !weaponPicked) {
 				for (var i = 0; i < ((ammo div maxRow) + 1); i++) {
 					if (ammo >= (i + 1) * maxRow) {
@@ -37,22 +37,22 @@ if (instance_exists(obj_player)) {
 				ammoType = other.proType;
 			}
 		}
-		ammo = obj_player.inv[obj_player.slot, 3];
+		ammo = obj_player.inv[obj_player.slot].general.ammoInMag;
 	}
 
-	maxAmmo = obj_player.inv[obj_player.slot, 2];
-	gunState = obj_player.inv[obj_player.slot, 18];
-	relStep = obj_player.inv[obj_player.slot, 22] / obj_player.inv[obj_player.slot, 2];
+	maxAmmo = obj_player.inv[obj_player.slot].general.magCap;
+	gunState = obj_player.inv[obj_player.slot].status.state;
+	relStep = obj_player.inv[obj_player.slot].reload.loading.time / obj_player.inv[obj_player.slot].general.magCap;
 	singleReloaded = obj_gun.singleReloaded;
-	singleRelStep = obj_player.inv[obj_player.slot, 23] / obj_player.inv[obj_player.slot, 2];
-	failReload = obj_player.inv[obj_player.slot, 30];
-	failSingleReload = obj_player.inv[obj_player.slot, 29];
-	ejecting = obj_player.inv[obj_player.slot, 20];
-	singleReloading = obj_player.inv[obj_player.slot, 28];
+	singleRelStep = obj_player.inv[obj_player.slot].reload.chamber.time / obj_player.inv[obj_player.slot].general.magCap;
+	failReload = obj_player.inv[obj_player.slot].reload.loading.hSFailed;
+	failSingleReload = obj_player.inv[obj_player.slot].reload.chamber.hSFailed;
+	ejecting = obj_player.inv[obj_player.slot].reload.ejection.status;
+	singleReloading = obj_player.inv[obj_player.slot].reload.chamber.inProcess;
 	curSlot = obj_player.slot;
-	proType = obj_player.inv[obj_player.slot, 14];
+	proType = obj_player.inv[obj_player.slot].stats.bullet.bType;
 	
-	switch (obj_player.inv[obj_player.slot, 14]) {
+	switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
 		case 0: maxRow = 20; break;
 		case 3: maxRow = 10; break;
 		default: maxRow = 15; break;
@@ -69,11 +69,11 @@ if (instance_exists(obj_player)) {
 	if (weaponPicked) weaponPicked = false;
 	
 	if (gunState = 2) {
-		relProg = (obj_player.inv[obj_player.slot, 22] - obj_player.inv[obj_player.slot, 31]) / relStep;
+		relProg = (obj_player.inv[obj_player.slot].reload.loading.time - obj_player.inv[obj_player.slot].reload.loading.timeRemaining) / relStep;
 	}
 	
 	if (singleReloading) {
-		singleRelProg = (obj_player.inv[obj_player.slot, 23] - obj_player.inv[obj_player.slot, 32]) / singleRelStep;
+		singleRelProg = (obj_player.inv[obj_player.slot].reload.chamber.time - obj_player.inv[obj_player.slot].reload.chamber.timeRemaining) / singleRelStep;
 	}
 	
 	if (emptyFire = true) {

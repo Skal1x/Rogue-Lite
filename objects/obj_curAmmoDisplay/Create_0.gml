@@ -1,3 +1,2 @@
-if (instance_exists(obj_player)) {
-	ammoReserve = obj_player.inv[obj_player.slot, 4];
-};
+alarm[0] = 60;
+isLoaded = false;

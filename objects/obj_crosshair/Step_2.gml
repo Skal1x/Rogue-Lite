@@ -15,7 +15,7 @@ if(instance_exists(obj_player)) {
 	image_xscale = 1 + abs(obj_player.hsp) / obj_player.maxRunSpeed / 2 + abs(obj_player.vsp) / obj_player.maxRunSpeed / 2;
 	image_yscale = 1 + abs(obj_player.hsp) / obj_player.maxRunSpeed / 2 + abs(obj_player.vsp) / obj_player.maxRunSpeed / 2;
 	
-	completeSpread = obj_player.inv[obj_player.slot, 5] + obj_player.curFireInacc + abs(obj_player.hsp) * 10 + abs(obj_player.vsp) * 10;
+	completeSpread = obj_player.inv[obj_player.slot].stats.spread + obj_player.curFireInacc + abs(obj_player.hsp) * 10 + abs(obj_player.vsp) * 10;
 	lineSpread = completeSpread;
 	
 	lineOneDir = point_direction(obj_player.x, obj_player.y, mouse_x, mouse_y) + lineSpread;

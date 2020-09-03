@@ -1,4 +1,3 @@
-inv[35] = 0;
-if (instance_exists(obj_player)) {
-	slot = obj_player.slot;
-}
+alarm[0] = 60;
+isLoaded = false;
+weaponStats = noone;

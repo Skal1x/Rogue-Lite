@@ -1,26 +1,28 @@
 #region Alert State Activation
-if (enemyState < 1) { if ((distance_to_object(obj_gunSoundQue) <= hearingDistance) || (!collision_line(x, y, obj_player.x, obj_player.y, obj_wall, 1, true) && (distance_to_object(obj_player) <= sightDistance))) enemyState = 1; }
-#endregion
+if (instance_exists(obj_player)) {
+	if (enemyState < 1) { if ((distance_to_object(obj_gunSoundQue) <= hearingDistance) || (!collision_line(x, y, obj_player.x, obj_player.y, obj_wall, 1, true) && (distance_to_object(obj_player) <= sightDistance))) enemyState = 1; }
 
-#region Select Reaction according to State
-if (!didDamage) {
-	switch (enemyState) {
-		case 1:
-			drawAlert = true;
-			if (!startChase) {
-				alarm[0] = 20;
-				startChase = true;
-			}
-			break;
-		case 2:
-			drawAlert = false;
-			if (instance_exists(obj_player)) {
-				if (mp_grid_path(global.grid, path, x, y, obj_player.x, obj_player.y,1)) {
-					path_start(path, curRunSpeed, path_action_stop, false);
+	#region Select Reaction according to State
+	if (!didDamage) {
+		switch (enemyState) {
+			case 1:
+				drawAlert = true;
+				if (!startChase) {
+					alarm[0] = 20;
+					startChase = true;
 				}
-			}
-			break;
+				break;
+			case 2:
+				drawAlert = false;
+				if (instance_exists(obj_player)) {
+					if (mp_grid_path(global.grid, path, x, y, obj_player.x, obj_player.y,1)) {
+						path_start(path, curRunSpeed, path_action_stop, false);
+					}
+				}
+				break;
+		}
 	}
+	#endregion
 }
 #endregion
 
