@@ -27,18 +27,22 @@ if (isLoaded && instance_exists(obj_player)) {
 				}
 			}
 		} else {
-			if (ammo % maxRow = 0) layerHeight = (ammo div maxRow) - 1; else layerHeight = ammo div maxRow;
-			if (ammo % maxRow = 0) bulletIndex = maxRow - 1; else bulletIndex = (ammo % maxRow) - 1;
-			with (instance_create_depth(x + bulletIndex * xMulti, y - layerHeight * yMulti,-y-950, obj_ammoDrop)) {
-				image_speed = 0;
-				image_alpha = 1;
-				image_xscale = 5;
-				image_yscale = 5;
-				ammoType = other.proType;
+			if (curSlot == obj_player.slot && !weaponPicked) {
+				if (ammo % maxRow = 0) layerHeight = (ammo div maxRow) - 1; else layerHeight = ammo div maxRow;
+				if (ammo % maxRow = 0) bulletIndex = maxRow - 1; else bulletIndex = (ammo % maxRow) - 1;
+				with (instance_create_depth(x + bulletIndex * xMulti, y - layerHeight * yMulti,-y-950, obj_ammoDrop)) {
+					image_speed = 0;
+					image_alpha = 1;
+					image_xscale = 5;
+					image_yscale = 5;
+					ammoType = other.proType;
+				}
 			}
 		}
 		ammo = obj_player.inv[obj_player.slot].general.ammoInMag;
 	}
+	
+	if (weaponPicked) weaponPicked = false;
 
 	maxAmmo = obj_player.inv[obj_player.slot].general.magCap;
 	gunState = obj_player.inv[obj_player.slot].status.state;
@@ -49,8 +53,8 @@ if (isLoaded && instance_exists(obj_player)) {
 	failSingleReload = obj_player.inv[obj_player.slot].reload.chamber.hSFailed;
 	ejecting = obj_player.inv[obj_player.slot].reload.ejection.status;
 	singleReloading = obj_player.inv[obj_player.slot].reload.chamber.inProcess;
+	proType = obj_player.inv[obj_player.slot].stats.bullet.bType
 	curSlot = obj_player.slot;
-	proType = obj_player.inv[obj_player.slot].stats.bullet.bType;
 	
 	switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
 		case 0: maxRow = 20; break;
@@ -65,8 +69,6 @@ if (isLoaded && instance_exists(obj_player)) {
 		case 3: xMulti = 36; yMulti = 40; break;
 		case 4: xMulti = 28; yMulti = 48; break;
 	}
-	
-	if (weaponPicked) weaponPicked = false;
 	
 	if (gunState = 2) {
 		relProg = (obj_player.inv[obj_player.slot].reload.loading.time - obj_player.inv[obj_player.slot].reload.loading.timeRemaining) / relStep;

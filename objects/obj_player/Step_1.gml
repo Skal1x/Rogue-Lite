@@ -265,11 +265,13 @@ if (slot == 0) {
 	if (mouse_wheel_down()) {
 		weaponSwitched = true;
 		slot = 1;
+		obj_ammoDisplay.weaponPicked = true;
 	}
 } else {
 	if (mouse_wheel_up()) {
 		weaponSwitched = true;
 		slot = 0;
+		obj_ammoDisplay.weaponPicked = true;
 	}
 }
 #endregion
