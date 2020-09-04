@@ -376,16 +376,16 @@ if (instance_exists(obj_player)) {
 					sprite_index = spr_gunShotgunTierE;
 					break;
 				case 2: //Remarkable
-					sprite_index = spr_gunMPTierD;
+					sprite_index = spr_gunShotgunTierD;
 					break;
 				case 3: //Abnormal
-					sprite_index = spr_gunMPTierC;
+					sprite_index = spr_gunShotgunTierC;
 					break;
 				case 4: //Experimental
-					sprite_index = spr_gunMPTierB;
+					sprite_index = spr_gunShotgunTierB;
 					break;
 				case 5://[REDACTED]
-					sprite_index = spr_gunMPTierA;
+					sprite_index = spr_gunShotgunTierA;
 					break;
 			}
 			break;

@@ -1,15 +1,15 @@
 gunState = {
 	general: {
-		gName: "gun",
-		rarity: 1,
-		gType: "pistol",
-		magCap: 12,
-		ammoInMag: 12,
-		ammoInRes: 120,
+		gName: "Fast MP",
+		rarity: 3,
+		gType: "mp",
+		magCap: 30,
+		ammoInMag: 30,
+		ammoInRes: 300,
 	},
 	stats: {
 		damage: 5,
-		fireRate: 10,
+		fireRate: 7,
 		fireMode: "auto",
 		isSingleShot: false,
 		burst: {
@@ -17,12 +17,12 @@ gunState = {
 			remaining: 0,
 		},
 		pelletsPerShot: 1,
-		spread: 6,
-		fireInaccuracy: 7,
+		spread: 5,
+		fireInaccuracy: 5,
 		bullet: {
-			bType: 3,
-			bSpeed: 8,
-			bRange: 230,
+			bType: 0,
+			bSpeed: 20,
+			bRange: 400,
 		},
 		randomEffect: 0,
 		explosion: {
@@ -37,15 +37,15 @@ gunState = {
 	},
 	reload: {
 		ejection: {
-			time: 80,
+			time: 40,
 			status: false,
-			timeRemaining: 80,
+			timeRemaining: 40,
 		},
 		loading: {
-			time: 400,
-			hSTimeframeStart: 200,
-			hSTimeframeStop: 100,
-			timeRemaining: 400,
+			time: 200,
+			hSTimeframeStart: 100,
+			hSTimeframeStop: 50,
+			timeRemaining: 200,
 			hSFailed: false,
 		},
 		chamber: {

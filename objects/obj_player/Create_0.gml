@@ -23,7 +23,7 @@ weaponSwitched = false;
 
 defaultGunState = {
 	general: {
-		name: "",
+		gName: "",
 		rarity: 0,
 		gType: "none",
 		magCap: 0,

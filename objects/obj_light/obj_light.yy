@@ -23,8 +23,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Invisible Untility Objects",
-    "path": "folders/Objekte/Invisible Untility Objects.yy",
+    "name": "Invisible Utility Objects",
+    "path": "folders/Objekte/Invisible Utility Objects.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_light",

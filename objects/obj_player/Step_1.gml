@@ -97,16 +97,6 @@ if (hp <= 0) {
 }
 #endregion
 
-/*
-#region Perfect Reload Time Calculation
-inv[slot].reload.loading.hSTimeframeStart = inv[slot].reload.loading.time / 2;
-inv[slot, 25] = inv[slot, 22] / 2 - inv[slot, 22] / 4;
-
-inv[slot, 26] = inv[slot, 23] / 2;
-inv[slot, 27] = inv[slot, 23] / 2 - inv[slot, 23] / 4;
-#endregion
-*/
-
 #region Reloading Generic
 if (inv[slot].status.state == 0 && keyboard_check_pressed(vk_lcontrol)) {
 	inv[slot].general.ammoInMag = 0;
@@ -120,7 +110,7 @@ if (inv[slot].status.state == 1 && keyboard_check_pressed(ord("R")) && !inv[slot
 	inv[slot].status.state += 1;
 }
 
-if (inv[slot].status.state == 0 && inv[slot].stats.fireMode == 3 && obj_gun.singleReloaded == false && inv[slot].status.fireReady == true) {
+if (inv[slot].status.state == 0 && inv[slot].stats.fireMode == "single" && obj_gun.singleReloaded == false && inv[slot].status.fireReady == true) {
 	if (keyboard_check_pressed(ord("R"))) {
 		inv[slot].reload.chamber.timeRemaining = inv[slot].reload.chamber.time;
 		inv[slot].reload.chamber.inProcess = true;
@@ -228,21 +218,21 @@ if (instance_exists(obj_gunDropped)) {
 				with (instance_create_depth(x,y,-y,obj_gunDropped)) {
 					gunState = obj_player.inv[obj_player.slot];
 					switch (gunState.general.gType) {
-					case 0:
+					case "none":
 						sprite_index = spr_gunNoGun; break;
-					case 1: switch (gunState.general.rarity) {
+					case "pistol": switch (gunState.general.rarity) {
 							case 1: /*Standard*/ sprite_index = spr_gunPistolTierE; break;
 							case 2: /*Remarkable*/ sprite_index = spr_gunPistolTierD; break;
 							case 3: /*Abnormal*/ sprite_index = spr_gunPistolTierC; break;
 							case 4: /*Experimental*/ sprite_index = spr_gunPistolTierB; break;
 							case 5: /*[REDACTED]*/ sprite_index = spr_gunPistolTierA; break; } break;
-					case 2: switch (gunState.general.rarity) {
+					case "mp": switch (gunState.general.rarity) {
 							case 1: /*Standard*/ sprite_index = spr_gunMPTierE; break;
 							case 2: /*Remarkable*/ sprite_index = spr_gunMPTierD; break;
 							case 3: /*Abnormal*/ sprite_index = spr_gunMPTierC; break;
 							case 4: /*Experimental*/ sprite_index = spr_gunMPTierB; break;
 							case 5: /*[REDACTED]*/ sprite_index = spr_gunMPTierA; break; } break;
-					case 6: switch (gunState.general.rarity) {
+					case "shotgun": switch (gunState.general.rarity) {
 							case 1: /*Standard*/ sprite_index = spr_gunShotgunTierE; break;
 							case 2: /*Remarkable*/ sprite_index = spr_gunShotgunTierD; break;
 							case 3: /*Abnormal*/ sprite_index = spr_gunShotgunTierC; break;
@@ -285,25 +275,25 @@ if (slot == 0) {
 #endregion
 
 #region Weapon Dropping
-if (keyboard_check_pressed(ord("G"))) {
+if (keyboard_check_pressed(ord("G")) && inv[slot].general.gType != "none") {
 	with (instance_create_depth(x,y,-y,obj_gunDropped)) {
 		gunState = obj_player.inv[obj_player.slot];
 		switch (gunState.general.gType) {
-		case 0:
+		case "none":
 			sprite_index = spr_gunNoGun; break;
-		case 1: switch (gunState.general.rarity) {
+		case "pistol": switch (gunState.general.rarity) {
 				case 1: /*Standard*/ sprite_index = spr_gunPistolTierE; break;
 				case 2: /*Remarkable*/ sprite_index = spr_gunPistolTierD; break;
 				case 3: /*Abnormal*/ sprite_index = spr_gunPistolTierC; break;
 				case 4: /*Experimental*/ sprite_index = spr_gunPistolTierB; break;
 				case 5: /*[REDACTED]*/ sprite_index = spr_gunPistolTierA; break; } break;
-		case 2: switch (gunState.general.rarity) {
+		case "mp": switch (gunState.general.rarity) {
 				case 1: /*Standard*/ sprite_index = spr_gunMPTierE; break;
 				case 2: /*Remarkable*/ sprite_index = spr_gunMPTierD; break;
 				case 3: /*Abnormal*/ sprite_index = spr_gunMPTierC; break;
 				case 4: /*Experimental*/ sprite_index = spr_gunMPTierB; break;
 				case 5: /*[REDACTED]*/ sprite_index = spr_gunMPTierA; break; } break;
-		case 6: switch (gunState.general.rarity) {
+		case "shotgun": switch (gunState.general.rarity) {
 				case 1: /*Standard*/ sprite_index = spr_gunShotgunTierE; break;
 				case 2: /*Remarkable*/ sprite_index = spr_gunShotgunTierD; break;
 				case 3: /*Abnormal*/ sprite_index = spr_gunShotgunTierC; break;
