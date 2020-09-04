@@ -1,5 +1,5 @@
 //Stay On Enemy
-if (instance_exists(obj_player) &&  instance_exists(parent)) {
+if (instance_exists(obj_player) && instance_exists(parent) && parent.enemyState != 0) {
 	dir = point_direction(parent.x,parent.y,obj_player.x,obj_player.y);
 	rad = dir * (pi / 180);
 	disX = cos(rad) * 6;

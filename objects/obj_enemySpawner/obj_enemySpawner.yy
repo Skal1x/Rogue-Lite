@@ -27,8 +27,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Environment & Enemies",
-    "path": "folders/Objekte/Gameplay Objects/Environment & Enemies.yy",
+    "name": "Spawner",
+    "path": "folders/Objekte/Gameplay Objects/Environment & Enemies/Spawner.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_enemySpawner",

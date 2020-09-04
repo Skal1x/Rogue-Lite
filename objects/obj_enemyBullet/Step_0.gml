@@ -6,13 +6,13 @@ for (var i = 0; i < bulletSpeed; i++) {
 	y += stepY;
 	#endregion
 	
-	#region Collision with Enemy
-	if (place_meeting(x,y,obj_enemyHitBox)) {
-		collider = instance_nearest(x,y,obj_enemyHitBox);
+	#region Collision with Player
+	if (place_meeting(x,y,obj_player)) {
+		collider = instance_nearest(x,y,obj_player);
 		if (sprite_index = spr_bulletLarge) {
-			collider.parent.hp -= damage * 1.5;
+			collider.hp -= damage * 1.5;
 		} else {
-			collider.parent.hp -= damage;
+			collider.hp -= damage;
 		}
 		if (sprite_index = spr_bulletExplosive) {
 			var explosion = instance_create_depth(x,y,-y-256,obj_explosion);

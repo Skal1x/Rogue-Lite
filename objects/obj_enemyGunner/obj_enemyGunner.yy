@@ -31,8 +31,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Environment & Enemies",
-    "path": "folders/Objekte/Gameplay Objects/Environment & Enemies.yy",
+    "name": "Enemies",
+    "path": "folders/Objekte/Gameplay Objects/Environment & Enemies/Enemies.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_enemyGunner",

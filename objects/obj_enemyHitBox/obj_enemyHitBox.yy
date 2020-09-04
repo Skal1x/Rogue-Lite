@@ -25,8 +25,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Environment & Enemies",
-    "path": "folders/Objekte/Gameplay Objects/Environment & Enemies.yy",
+    "name": "Debug-Utility",
+    "path": "folders/Objekte/Gameplay Objects/Environment & Enemies/Debug-Utility.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_enemyHitBox",
