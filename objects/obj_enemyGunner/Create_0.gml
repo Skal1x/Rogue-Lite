@@ -19,6 +19,17 @@ hearingDistance = 600;
 
 with (instance_create_depth(x,y,-y, obj_enemyGun)) {
 	parent = other.id;
+	dir = 0;
+	rad = dir * (pi / 180);
+	disX = cos(rad) * 6;
+	disY = sin(rad) * -1 * 6;
+
+	x = parent.x + disX;
+	y = parent.y + disY;
+	
+	image_angle = dir;
+	
+	depth = -y -10;
 }
 
 with (instance_create_depth(x,y,-y, obj_enemyHitBox)) {
@@ -26,4 +37,4 @@ with (instance_create_depth(x,y,-y, obj_enemyHitBox)) {
 	sprite_index = other.sprite_index;
 }
 
-gunState = getGunForEnemy("eGunner");
+gunState = getGunForEnemy("eGunner", global.mayhem);

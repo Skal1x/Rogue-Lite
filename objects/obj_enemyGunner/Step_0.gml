@@ -36,6 +36,31 @@ if (hp <= 0) {
 	for (var i = 0; i < 10; i++) {
 		instance_create_depth(x + random_range(-8,8), y + random_range(-8,8), -y, obj_bloodPart);
 	}
+	with (instance_create_depth(x, y, -y, obj_gunDropped)) {
+		gunState = other.gunState;
+		switch (gunState.general.gType) {
+		case "none":
+		sprite_index = spr_gunNoGun; break;
+		case "pistol": switch (gunState.general.rarity) {
+			case 1: /*Standard*/ sprite_index = spr_gunPistolTierE; break;
+			case 2: /*Remarkable*/ sprite_index = spr_gunPistolTierD; break;
+			case 3: /*Abnormal*/ sprite_index = spr_gunPistolTierC; break;
+			case 4: /*Experimental*/ sprite_index = spr_gunPistolTierB; break;
+			case 5: /*[REDACTED]*/ sprite_index = spr_gunPistolTierA; break; } break;
+		case "mp": switch (gunState.general.rarity) {
+			case 1: /*Standard*/ sprite_index = spr_gunMPTierE; break;
+			case 2: /*Remarkable*/ sprite_index = spr_gunMPTierD; break;
+			case 3: /*Abnormal*/ sprite_index = spr_gunMPTierC; break;
+			case 4: /*Experimental*/ sprite_index = spr_gunMPTierB; break;
+			case 5: /*[REDACTED]*/ sprite_index = spr_gunMPTierA; break; } break;
+		case "shotgun": switch (gunState.general.rarity) {
+			case 1: /*Standard*/ sprite_index = spr_gunShotgunTierE; break;
+			case 2: /*Remarkable*/ sprite_index = spr_gunShotgunTierD; break;
+			case 3: /*Abnormal*/ sprite_index = spr_gunShotgunTierC; break;
+			case 4: /*Experimental*/ sprite_index = spr_gunShotgunTierB; break;
+			case 5: /*[REDACTED]*/ sprite_index = spr_gunShotgunTierA; break; } break;
+		}
+	};
 }
 #endregion
 
@@ -77,8 +102,26 @@ switch (enemyState) {
 		if (instance_exists(obj_player)) {
 			if (fireCooldown == 0) {
 				with (instance_create_depth(x,y,-y,obj_enemyBullet)) {
-					image_angle = point_direction(x, y, obj_player.x, obj_player.y);
-					motion_set(image_angle, 2);
+					parent = other.id;
+					bulletSpeed = parent.gunState.stats.bullet.bSpeed;
+					range = parent.gunState.stats.bullet.bRange;
+					damage = parent.gunState.stats.damage;
+					expSize = parent.gunState.stats.explosion.radius;
+					expDamage = parent.gunState.stats.explosion.damage;
+					curFireInacc = parent.gunState.stats.fireInaccuracy;
+					spread = parent.gunState.stats.spread;
+					
+					dir = point_direction(x,y,obj_player.x,obj_player.y) + random_range(- spread, spread) + random_range(-(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10),(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10) + random_range(-curFireInacc,curFireInacc));
+					radian = dir * (pi / 180);
+					stepX = cos(radian);
+					stepY = sin(radian) * -1;
+					switch (parent.gunState.stats.bullet.bType) {
+						case 0: sprite_index = spr_bulletSmall; break;
+						case 1: sprite_index = spr_bulletLarge; break;
+						case 2: sprite_index = spr_bulletShotgun; break;
+						case 3: sprite_index = spr_bulletExplosive; break;
+						case 4: sprite_index = spr_bulletIncendiary; break;
+					}
 				}
 				fireCooldown = 180;
 			}

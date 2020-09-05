@@ -6,9 +6,9 @@ if (!instance_exists(obj_player)) {
 
 if (instance_exists(obj_player)) {
 	camera_set_view_target(view_camera[0], obj_player);
-	camera_set_view_border(view_camera[0],448,252);
-	viewX = obj_player.x - 224;
-	viewY = obj_player.y - 126;
+	camera_set_view_border(view_camera[0],512,288);
+	viewX = obj_player.x - 256;
+	viewY = obj_player.y - 144;
 }
 
 if (shakeAmount > maxShake) {

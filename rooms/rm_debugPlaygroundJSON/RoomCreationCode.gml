@@ -1,2 +1,0 @@
-globalvar mayhem;
-mayhem = false;

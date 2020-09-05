@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function getGunForEnemy(enemyType){
-	if (global.mayhem) {
+function getGunForEnemy(enemyType, isMayhem){
+	if (isMayhem) {
 		//TODO
 	} else {
 		switch(enemyType) {
@@ -24,13 +24,13 @@ function getGunForEnemy(enemyType){
 							size: 0,
 							remaining: 0,
 						},
-						pelletsPerShot: 0,
-						spread: 0,
-						fireInaccuracy: 0,
+						pelletsPerShot: 1,
+						spread: random_range(0.5,5),
+						fireInaccuracy: random_range(0.5,2),
 						bullet: {
 							bType: irandom_range(0,2),
 							bSpeed: irandom_range(6,10),
-							bRange: irandom_range(120,180),
+							bRange: irandom_range(120,300),
 						},
 						randomEffect: 0,
 						explosion: {

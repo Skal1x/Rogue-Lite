@@ -15,7 +15,6 @@
   "layers": [
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_grid","path":"objects/obj_grid/obj_grid.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":144.0,"y":240.0,"resourceVersion":"1.0","name":"inst_35119F84","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_playerOLD","path":"objects/obj_playerOLD/obj_playerOLD.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":280.0,"y":440.0,"resourceVersion":"1.0","name":"inst_AF17E11","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_gunOLD","path":"objects/obj_gunOLD/obj_gunOLD.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":224.0,"y":384.0,"resourceVersion":"1.0","name":"inst_24A150B6","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_textNotice","path":"objects/obj_textNotice/obj_textNotice.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1575.0,"y":875.0,"resourceVersion":"1.0","name":"inst_47FD14C5","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_health","path":"objects/obj_health/obj_health.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":25.0,"y":25.0,"resourceVersion":"1.0","name":"inst_15E0C558","tags":[],"resourceType":"GMRInstance",},
@@ -331,7 +330,6 @@
   "creationCodeFile": "",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"inst_AF17E11","path":"rooms/rm_debugbulletCollision01/rm_debugbulletCollision01.yy",},
     {"name":"inst_24A150B6","path":"rooms/rm_debugbulletCollision01/rm_debugbulletCollision01.yy",},
     {"name":"inst_35119F84","path":"rooms/rm_debugbulletCollision01/rm_debugbulletCollision01.yy",},
     {"name":"inst_47FD14C5","path":"rooms/rm_debugbulletCollision01/rm_debugbulletCollision01.yy",},
