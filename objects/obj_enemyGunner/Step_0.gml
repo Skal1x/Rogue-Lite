@@ -9,9 +9,9 @@ if (enemyState < 1 && instance_exists(obj_player)) {
 
 #region Sprite and animation Management
 //Flip Image according to Movement Direction
-if (lastX > x) {
+if (lastX > x || gun.x > x) {
 	image_xscale = -1;
-} else if (lastX < x) {
+} else if (lastX < x || gun.x < x) {
 	image_xscale = 1;
 }
 
@@ -151,6 +151,7 @@ switch (enemyState) {
 							case 4: sprite_index = spr_bulletIncendiary; break;
 					}
 				}
+				audio_play_sound(snd_gunShotGeneric,1,0);
 				if (gunState.stats.fireMode == "single") isChambered = false;
 				if (gunState.stats.fireMode == "burst") gunState.stats.burst.remaining = gunState.stats.burst.size;
 				if (gunState.stats.fireMode == "semi") { semiDelay = true; semiTimer = irandom_range(20,60); }
@@ -166,7 +167,6 @@ switch (enemyState) {
 if (gunState.stats.burst.remaining > 0 && gunState.status.fireReadyCD == 0) {
 	if (gunState.general.ammoInMag > 0) {
 		gunState.stats.burst.remaining--;
-		gunState.general.ammoInMag--;
 		with (instance_create_depth(x,y,-y,obj_enemyBullet)) {
 			parent = other.id;
 			bulletSpeed = parent.gunState.stats.bullet.bSpeed;
@@ -176,8 +176,12 @@ if (gunState.stats.burst.remaining > 0 && gunState.status.fireReadyCD == 0) {
 			expDamage = parent.gunState.stats.explosion.damage;
 			curFireInacc = parent.gunState.stats.fireInaccuracy;
 			spread = parent.gunState.stats.spread;
-					
-			dir = point_direction(x,y,obj_player.x,obj_player.y) + random_range(- spread, spread) + random_range(-(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10),(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10) + random_range(-curFireInacc,curFireInacc));
+			
+			if (instance_exists(obj_player)) {
+				dir = point_direction(x,y,obj_player.x,obj_player.y) + random_range(- spread, spread) + random_range(-(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10),(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10) + random_range(-curFireInacc,curFireInacc));
+			} else {
+				dir = point_direction(x,y,obj_playerGrave.x,obj_playerGrave.y) + random_range(- spread, spread) + random_range(-(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10),(abs(parent.vspeed) * 10 + abs(parent.hspeed) * 10) + random_range(-curFireInacc,curFireInacc));
+			}
 			radian = dir * (pi / 180);
 			stepX = cos(radian);
 			stepY = sin(radian) * -1;
@@ -189,6 +193,10 @@ if (gunState.stats.burst.remaining > 0 && gunState.status.fireReadyCD == 0) {
 				case 4: sprite_index = spr_bulletIncendiary; break;
 			}
 		}
+		
+		gunState.stats.burst.remaining--;
+		gunState.general.ammoInMag--;
+		gunState.status.fireReadyCD = gunState.stats.fireRate;
 	} else {
 		gunState.stats.burst.remaining = 0;
 	}
