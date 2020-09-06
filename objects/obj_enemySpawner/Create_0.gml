@@ -1,2 +1,2 @@
-enemyType = 0;
+enemyType = "charger";
 image_speed = 0;
