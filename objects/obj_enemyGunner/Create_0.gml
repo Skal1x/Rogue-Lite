@@ -22,6 +22,7 @@ reloadTimer = 0;
 chamberTimer = 0;
 semiDelay = false;
 semiTimer = 0;
+gun = 0;
 
 with (instance_create_depth(x,y,-y, obj_enemyHitBox)) {
 	parent = other.id;
@@ -33,6 +34,7 @@ gunState = getGunForEnemy("eGunner", global.mayhem);
 with (instance_create_depth(x,y,-y, obj_enemyGun)) {
 	sprite_index = getSpriteForGun(other.gunState.general.gType, other.gunState.general.rarity);
 	parent = other.id;
+	other.gun = id;
 	dir = 0;
 	rad = dir * (pi / 180);
 	disX = cos(rad) * 6;

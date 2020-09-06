@@ -9,9 +9,9 @@ if (enemyState < 1 && instance_exists(obj_player)) {
 
 #region Sprite and animation Management
 //Flip Image according to Movement Direction
-if (lastX > x || gun.x > x) {
+if (lastX > x || gun.x < x) {
 	image_xscale = -1;
-} else if (lastX < x || gun.x < x) {
+} else if (lastX < x || gun.x > x) {
 	image_xscale = 1;
 }
 
