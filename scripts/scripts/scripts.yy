@@ -6,7 +6,7 @@
     "path": "folders/Skripte.yy",
   },
   "resourceVersion": "1.0",
-  "name": "getGunForEnemy",
+  "name": "scripts",
   "tags": [],
   "resourceType": "GMScript",
 }

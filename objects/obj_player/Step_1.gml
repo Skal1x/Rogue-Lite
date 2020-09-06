@@ -91,7 +91,7 @@ if (mouse_x >= x) image_xscale = 1; else image_xscale = -1;
 #endregion
 
 #region Damage and Health Management
-if (hp <= 0) {
+if (hp <= 0 && godMode == false) {
 	instance_create_depth(0,0,-y-1000,obj_deathMessage);
 	instance_destroy();
 }
@@ -103,6 +103,7 @@ if (inv[slot].status.state == 0 && keyboard_check_pressed(vk_lcontrol)) {
 	inv[slot].reload.ejection.status = true;
 	inv[slot].reload.ejection.timeRemaining = inv[slot].reload.ejection.time;
 	inv[slot].status.state += 1;
+	inv[slot].stats.burst.remaining = 0;
 }
 
 if (inv[slot].status.state == 1 && keyboard_check_pressed(ord("R")) && !inv[slot].reload.ejection.status) {
@@ -217,28 +218,7 @@ if (instance_exists(obj_gunDropped)) {
 			if (inv[slot].general.gType != "none") {
 				with (instance_create_depth(x,y,-y,obj_gunDropped)) {
 					gunState = obj_player.inv[obj_player.slot];
-					switch (gunState.general.gType) {
-					case "none":
-						sprite_index = spr_gunNoGun; break;
-					case "pistol": switch (gunState.general.rarity) {
-							case 1: /*Standard*/ sprite_index = spr_gunPistolTierE; break;
-							case 2: /*Remarkable*/ sprite_index = spr_gunPistolTierD; break;
-							case 3: /*Abnormal*/ sprite_index = spr_gunPistolTierC; break;
-							case 4: /*Experimental*/ sprite_index = spr_gunPistolTierB; break;
-							case 5: /*[REDACTED]*/ sprite_index = spr_gunPistolTierA; break; } break;
-					case "mp": switch (gunState.general.rarity) {
-							case 1: /*Standard*/ sprite_index = spr_gunMPTierE; break;
-							case 2: /*Remarkable*/ sprite_index = spr_gunMPTierD; break;
-							case 3: /*Abnormal*/ sprite_index = spr_gunMPTierC; break;
-							case 4: /*Experimental*/ sprite_index = spr_gunMPTierB; break;
-							case 5: /*[REDACTED]*/ sprite_index = spr_gunMPTierA; break; } break;
-					case "shotgun": switch (gunState.general.rarity) {
-							case 1: /*Standard*/ sprite_index = spr_gunShotgunTierE; break;
-							case 2: /*Remarkable*/ sprite_index = spr_gunShotgunTierD; break;
-							case 3: /*Abnormal*/ sprite_index = spr_gunShotgunTierC; break;
-							case 4: /*Experimental*/ sprite_index = spr_gunShotgunTierB; break;
-							case 5: /*[REDACTED]*/ sprite_index = spr_gunShotgunTierA; break; } break;
-					}
+					sprite_index = getSpriteForGun(gunState.general.gType, gunState.general.rarity);
 				}
 	
 				inv[slot] = defaultGunState;
@@ -280,28 +260,7 @@ if (slot == 0) {
 if (keyboard_check_pressed(ord("G")) && inv[slot].general.gType != "none") {
 	with (instance_create_depth(x,y,-y,obj_gunDropped)) {
 		gunState = obj_player.inv[obj_player.slot];
-		switch (gunState.general.gType) {
-		case "none":
-			sprite_index = spr_gunNoGun; break;
-		case "pistol": switch (gunState.general.rarity) {
-				case 1: /*Standard*/ sprite_index = spr_gunPistolTierE; break;
-				case 2: /*Remarkable*/ sprite_index = spr_gunPistolTierD; break;
-				case 3: /*Abnormal*/ sprite_index = spr_gunPistolTierC; break;
-				case 4: /*Experimental*/ sprite_index = spr_gunPistolTierB; break;
-				case 5: /*[REDACTED]*/ sprite_index = spr_gunPistolTierA; break; } break;
-		case "mp": switch (gunState.general.rarity) {
-				case 1: /*Standard*/ sprite_index = spr_gunMPTierE; break;
-				case 2: /*Remarkable*/ sprite_index = spr_gunMPTierD; break;
-				case 3: /*Abnormal*/ sprite_index = spr_gunMPTierC; break;
-				case 4: /*Experimental*/ sprite_index = spr_gunMPTierB; break;
-				case 5: /*[REDACTED]*/ sprite_index = spr_gunMPTierA; break; } break;
-		case "shotgun": switch (gunState.general.rarity) {
-				case 1: /*Standard*/ sprite_index = spr_gunShotgunTierE; break;
-				case 2: /*Remarkable*/ sprite_index = spr_gunShotgunTierD; break;
-				case 3: /*Abnormal*/ sprite_index = spr_gunShotgunTierC; break;
-				case 4: /*Experimental*/ sprite_index = spr_gunShotgunTierB; break;
-				case 5: /*[REDACTED]*/ sprite_index = spr_gunShotgunTierA; break; } break;
-		}
+		sprite_index = getSpriteForGun(gunState.general.gType, gunState.general.rarity);
 	}
 	
 	inv[slot] = defaultGunState;

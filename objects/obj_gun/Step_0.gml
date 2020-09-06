@@ -224,7 +224,7 @@ if (instance_exists(obj_player)) {
 						for (var j = 0; j < bulletsPerShot; j++) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
-							switch (obj_player.inv[obj_player.slot, 14]) {
+							switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
 								case 0: obj_gameController.shakeAmount += 0.1; break;
 								case 1: obj_gameController.shakeAmount += 0.2; break;
 								case 2: obj_gameController.shakeAmount += 0.05; break;
