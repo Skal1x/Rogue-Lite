@@ -33,7 +33,7 @@ gunState = {
 	status: {
 		state: 0,
 		fireReady: true,
-		fireReadyCD: 0,
+		fireReadyCD: 5,
 	},
 	reload: {
 		ejection: {

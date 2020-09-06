@@ -13,6 +13,7 @@ allowDash = true;
 drawNotice = false;
 curFireInacc = 0;
 invSize = 2;
+godMode = true;
 image_speed = 0.5;
 #endregion
 

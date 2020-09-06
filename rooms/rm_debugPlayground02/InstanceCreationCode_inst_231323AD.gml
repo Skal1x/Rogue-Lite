@@ -44,14 +44,14 @@ gunState = {
 		loading: {
 			time: 400,
 			hSTimeframeStart: 200,
-			hsTimeframeStop: 300,
+			hSTimeframeStop: 300,
 			timeRemaining: 400,
 			hSFailed: false,
 		},
 		chamber: {
 			time: 40,
 			hSTimeframeStart: 20,
-			hSTimeFrameStop: 30,
+			hSTimeframeStop: 30,
 			timeRemaining: 40,
 			hSFailed: false,
 		},

@@ -13,11 +13,23 @@ drawAlert = false;
 startChase = false;
 path = path_add();
 lastX = x;
-fireCooldown = 0;
 sightDistance = 50;
 hearingDistance = 600;
+isReloading = false;
+isChambered = true;
+isChambering = false;
+reloadTimer = 0;
+chamberTimer = 0;
+
+with (instance_create_depth(x,y,-y, obj_enemyHitBox)) {
+	parent = other.id;
+	sprite_index = other.sprite_index;
+}
+
+gunState = getGunForEnemy("eGunner", global.mayhem);
 
 with (instance_create_depth(x,y,-y, obj_enemyGun)) {
+	sprite_index = getSpriteForGun(other.gunState.general.gType, other.gunState.general.rarity);
 	parent = other.id;
 	dir = 0;
 	rad = dir * (pi / 180);
@@ -31,10 +43,3 @@ with (instance_create_depth(x,y,-y, obj_enemyGun)) {
 	
 	depth = -y -10;
 }
-
-with (instance_create_depth(x,y,-y, obj_enemyHitBox)) {
-	parent = other.id;
-	sprite_index = other.sprite_index;
-}
-
-gunState = getGunForEnemy("eGunner", global.mayhem);

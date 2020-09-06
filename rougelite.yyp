@@ -110,7 +110,7 @@
     {"id":{"name":"obj_enemyGun","path":"objects/obj_enemyGun/obj_enemyGun.yy",},"order":7,},
     {"id":{"name":"obj_bulletPart","path":"objects/obj_bulletPart/obj_bulletPart.yy",},"order":0,},
     {"id":{"name":"obj_enemyHitBox","path":"objects/obj_enemyHitBox/obj_enemyHitBox.yy",},"order":1,},
-    {"id":{"name":"getGunForEnemy","path":"scripts/getGunForEnemy/getGunForEnemy.yy",},"order":0,},
+    {"id":{"name":"scripts","path":"scripts/scripts/scripts.yy",},"order":0,},
     {"id":{"name":"obj_bloodPart","path":"objects/obj_bloodPart/obj_bloodPart.yy",},"order":1,},
     {"id":{"name":"obj_bulletDecal","path":"objects/obj_bulletDecal/obj_bulletDecal.yy",},"order":2,},
     {"id":{"name":"obj_playerDash","path":"objects/obj_playerDash/obj_playerDash.yy",},"order":3,},
