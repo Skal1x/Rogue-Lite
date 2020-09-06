@@ -103,6 +103,7 @@ if (godMode) {
 
 if (hp <= 0 && godMode == false) {
 	instance_create_depth(0,0,-y-1000,obj_deathMessage);
+	instance_create_depth(x,y,-y,obj_playerGrave);
 	instance_destroy();
 }
 #endregion
