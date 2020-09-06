@@ -18,6 +18,12 @@ if (place_meeting(x, y+vsp, obj_wall)) {
 	}
 }
 
+#region GodMode
+if (keyboard_check(ord("J"))) {
+	godMode = !godMode;
+}
+#endregion
+
 if (place_meeting(x + hsp, y, obj_wall)) {
 	if (hsp > 0) {
 		while (place_meeting(x + hsp, y, obj_wall)) {
@@ -91,6 +97,10 @@ if (mouse_x >= x) image_xscale = 1; else image_xscale = -1;
 #endregion
 
 #region Damage and Health Management
+if (godMode) {
+	hp = 100;
+}
+
 if (hp <= 0 && godMode == false) {
 	instance_create_depth(0,0,-y-1000,obj_deathMessage);
 	instance_destroy();
