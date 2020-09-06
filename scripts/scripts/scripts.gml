@@ -16,8 +16,8 @@ function getGunForEnemy(enemyType, isMayhem){
 						ammoInRes: 0,
 					},
 					stats: {
-						damage: irandom_range(4,16),
-						fireRate: irandom_range(10,22),
+						damage: irandom_range(2,5),
+						fireRate: irandom_range(15,30),
 						fireMode: getRandomFireMode(),
 						isSingleShot: false,
 						burst: {
@@ -40,7 +40,7 @@ function getGunForEnemy(enemyType, isMayhem){
 					},
 					status: {
 						state: 0,
-						fireReady: true,
+						fireReady: false,
 						fireReadyCD: 0,
 					},
 					reload: {
@@ -131,6 +131,17 @@ function getRandomFireMode() {
 			break;
 		case 3:
 			return "single";
+			break;
+	}
+}
+	
+function getSpawnerTexture(enemyType) {
+	switch (enemyType) {
+		case "charger":
+			return 0;
+			break;
+		case "gunman":
+			return 1;
 			break;
 	}
 }

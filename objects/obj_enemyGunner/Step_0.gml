@@ -60,7 +60,13 @@ if (gunState.status.fireReadyCD > 0) {
 #endregion
 
 #region Semi Firedelay
+if (semiTimer > 0 && semiDelay) {
+	semiTimer--;
+}
 
+if (semiTimer == 0) {
+	semiDelay = false;	
+}
 #endregion
 
 #region Reloading
@@ -121,7 +127,7 @@ switch (enemyState) {
 	case 3: //Do the Pew
 		path_end();
 		if (instance_exists(obj_player)) {
-			if (gunState.status.fireReadyCD == 0 && gunState.general.ammoInMag > 0 && isChambered == true) {
+			if (gunState.status.fireReadyCD == 0 && gunState.general.ammoInMag > 0 && isChambered && !semiDelay) {
 				if (gunState.stats.burst.remaining == 0) {
 					with (instance_create_depth(x,y,-y,obj_enemyBullet)) {
 						parent = other.id;
@@ -147,6 +153,7 @@ switch (enemyState) {
 				}
 				if (gunState.stats.fireMode == "single") isChambered = false;
 				if (gunState.stats.fireMode == "burst") gunState.stats.burst.remaining = gunState.stats.burst.size;
+				if (gunState.stats.fireMode == "semi") { semiDelay = true; semiTimer = irandom_range(20,60); }
 				gunState.general.ammoInMag--;
 				gunState.status.fireReadyCD = gunState.stats.fireRate;
 			}
@@ -159,6 +166,7 @@ switch (enemyState) {
 if (gunState.stats.burst.remaining > 0 && gunState.status.fireReadyCD == 0) {
 	if (gunState.general.ammoInMag > 0) {
 		gunState.stats.burst.remaining--;
+		gunState.general.ammoInMag--;
 		with (instance_create_depth(x,y,-y,obj_enemyBullet)) {
 			parent = other.id;
 			bulletSpeed = parent.gunState.stats.bullet.bSpeed;

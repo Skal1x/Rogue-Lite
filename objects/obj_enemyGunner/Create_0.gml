@@ -20,6 +20,8 @@ isChambered = true;
 isChambering = false;
 reloadTimer = 0;
 chamberTimer = 0;
+semiDelay = false;
+semiTimer = 0;
 
 with (instance_create_depth(x,y,-y, obj_enemyHitBox)) {
 	parent = other.id;
