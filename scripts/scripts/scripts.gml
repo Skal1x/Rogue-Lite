@@ -16,9 +16,9 @@ function getGunForEnemy(enemyType, isMayhem){
 						ammoInRes: 0,
 					},
 					stats: {
-						damage: irandom_range(2,5),
-						fireRate: irandom_range(15,30),
-						fireMode: "burst",//getRandomFireMode(),
+						damage: irandom_range(1,3),
+						fireRate: irandom_range(25,40),
+						fireMode: getRandomFireMode(),
 						isSingleShot: false,
 						burst: {
 							size: irandom_range(2,10),
