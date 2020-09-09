@@ -19,7 +19,7 @@ if (place_meeting(x, y+vsp, obj_wall)) {
 }
 
 #region GodMode
-if (keyboard_check(ord("J"))) {
+if (keyboard_check_pressed(ord("J"))) {
 	godMode = !godMode;
 }
 #endregion
