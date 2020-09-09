@@ -29,7 +29,7 @@ function getGunForEnemy(enemyType, isMayhem){
 						fireInaccuracy: random_range(0.5,2),
 						bullet: {
 							bType: irandom_range(0,1),
-							bSpeed: irandom_range(6,10),
+							bSpeed: irandom_range(1,6),
 							bRange: irandom_range(120,300),
 						},
 						randomEffect: 0,
