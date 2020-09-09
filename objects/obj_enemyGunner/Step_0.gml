@@ -153,7 +153,7 @@ switch (enemyState) {
 				}
 				audio_play_sound(snd_gunShotGeneric,1,0);
 				if (gunState.stats.fireMode == "single") isChambered = false;
-				if (gunState.stats.fireMode == "burst") gunState.stats.burst.remaining = gunState.stats.burst.size;
+				if (gunState.stats.fireMode == "burst") gunState.stats.burst.remaining = gunState.stats.burst.size - 1;
 				if (gunState.stats.fireMode == "semi") { semiDelay = true; semiTimer = irandom_range(20,60); }
 				gunState.general.ammoInMag--;
 				gunState.status.fireReadyCD = gunState.stats.fireRate;
