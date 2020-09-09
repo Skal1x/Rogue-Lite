@@ -5,3 +5,6 @@ vCells = room_height div cellHeight;
 
 global.grid = mp_grid_create(0, 0, hCells, vCells, cellWidth, cellHeight);
 mp_grid_add_instances(global.grid, obj_wall, false);
+
+global.gridBoss = mp_grid_create(-8, -8, hCells, vCells, cellWidth * 2, cellHeight * 2);
+mp_grid_add_instances(global.gridBoss, obj_wall, false);
