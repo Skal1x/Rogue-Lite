@@ -135,6 +135,27 @@ function getRandomFireMode() {
 	}
 }
 	
+function addKnockbackToPlayer(kbAmount, shotDir) {
+	var counterShotDir = 0;
+	
+	if (shotDir > 180) {
+		counterShotDir = shotDir - 180;
+	} else {
+		counterShotDir = shotDir + 180;
+	}
+	
+	var rad = counterShotDir * (pi / 180);
+	
+	var stepX = cos(rad);
+	var stepY = sin(rad) * -1;
+	
+	show_debug_message(stepX);
+	show_debug_message(stepY);
+	
+	obj_player.hsp += stepX * kbAmount * 5;
+	obj_player.vsp += stepY * kbAmount * 5;
+}
+	
 function getSpawnerTexture(enemyType) {
 	switch (enemyType) {
 		case "charger":

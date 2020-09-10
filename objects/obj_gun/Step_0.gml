@@ -55,11 +55,11 @@ if (instance_exists(obj_player)) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
-								case 0: obj_gameController.shakeAmount += 0.1; break;
-								case 1: obj_gameController.shakeAmount += 0.2; break;
-								case 2: obj_gameController.shakeAmount += 0.05; break;
-								case 3: obj_gameController.shakeAmount += 0.7; break;
-								case 4: obj_gameController.shakeAmount += 0.5; break;
+								case 0: obj_gameController.shakeAmount += 0.1; addKnockbackToPlayer(0.1, bullet.image_angle); break;
+								case 1: obj_gameController.shakeAmount += 0.2; addKnockbackToPlayer(0.2, bullet.image_angle); break;
+								case 2: obj_gameController.shakeAmount += 0.05; addKnockbackToPlayer(0.05, bullet.image_angle); break;
+								case 3: obj_gameController.shakeAmount += 0.7; addKnockbackToPlayer(0.7, bullet.image_angle); break;
+								case 4: obj_gameController.shakeAmount += 0.5; addKnockbackToPlayer(0.5, bullet.image_angle); break;
 							}
 						}
 					}
@@ -116,11 +116,11 @@ if (instance_exists(obj_player)) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
-								case 0: obj_gameController.shakeAmount += 0.1; break;
-								case 1: obj_gameController.shakeAmount += 0.2; break;
-								case 2: obj_gameController.shakeAmount += 0.05; break;
-								case 3: obj_gameController.shakeAmount += 0.7; break;
-								case 4: obj_gameController.shakeAmount += 0.5; break;
+								case 0: obj_gameController.shakeAmount += 0.1; addKnockbackToPlayer(0.1, bullet.image_angle); break;
+								case 1: obj_gameController.shakeAmount += 0.2; addKnockbackToPlayer(0.2, bullet.image_angle); break;
+								case 2: obj_gameController.shakeAmount += 0.05; addKnockbackToPlayer(0.05, bullet.image_angle); break;
+								case 3: obj_gameController.shakeAmount += 0.7; addKnockbackToPlayer(0.7, bullet.image_angle); break;
+								case 4: obj_gameController.shakeAmount += 0.5; addKnockbackToPlayer(0.5, bullet.image_angle); break;
 							}
 						}
 					}
@@ -162,11 +162,11 @@ if (instance_exists(obj_player)) {
 								var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
 								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 								switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
-									case 0: obj_gameController.shakeAmount += 0.1; break;
-									case 1: obj_gameController.shakeAmount += 0.2; break;
-									case 2: obj_gameController.shakeAmount += 0.05; break;
-									case 3: obj_gameController.shakeAmount += 0.7; break;
-									case 4: obj_gameController.shakeAmount += 0.5; break;
+									case 0: obj_gameController.shakeAmount += 0.1; addKnockbackToPlayer(0.1, bullet.image_angle); break;
+									case 1: obj_gameController.shakeAmount += 0.2; addKnockbackToPlayer(0.2, bullet.image_angle); break;
+									case 2: obj_gameController.shakeAmount += 0.05; addKnockbackToPlayer(0.05, bullet.image_angle); break;
+									case 3: obj_gameController.shakeAmount += 0.7; addKnockbackToPlayer(0.7, bullet.image_angle); break;
+									case 4: obj_gameController.shakeAmount += 0.5; addKnockbackToPlayer(0.5, bullet.image_angle); break;
 								}
 							}
 						}
@@ -225,11 +225,11 @@ if (instance_exists(obj_player)) {
 							var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
 							bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 							switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
-								case 0: obj_gameController.shakeAmount += 0.1; break;
-								case 1: obj_gameController.shakeAmount += 0.2; break;
-								case 2: obj_gameController.shakeAmount += 0.05; break;
-								case 3: obj_gameController.shakeAmount += 0.7; break;
-								case 4: obj_gameController.shakeAmount += 0.5; break;
+								case 0: obj_gameController.shakeAmount += 0.1; addKnockbackToPlayer(0.1, bullet.image_angle); break;
+								case 1: obj_gameController.shakeAmount += 0.2; addKnockbackToPlayer(0.2, bullet.image_angle); break;
+								case 2: obj_gameController.shakeAmount += 0.05; addKnockbackToPlayer(0.05, bullet.image_angle); break;
+								case 3: obj_gameController.shakeAmount += 0.7; addKnockbackToPlayer(0.7, bullet.image_angle); break;
+								case 4: obj_gameController.shakeAmount += 0.5; addKnockbackToPlayer(0.5, bullet.image_angle); break;
 							}
 						}
 					}
@@ -285,11 +285,11 @@ if (instance_exists(obj_player)) {
 								var bullet = instance_create_depth(x,y, -y-5, obj_bullet);
 								bullet.image_angle = point_direction(obj_player.x,obj_player.y,mouse_x,mouse_y);
 								switch (obj_player.inv[obj_player.slot].stats.bullet.bType) {
-									case 0: obj_gameController.shakeAmount += 0.1; break;
-									case 1: obj_gameController.shakeAmount += 0.2; break;
-									case 2: obj_gameController.shakeAmount += 0.05; break;
-									case 3: obj_gameController.shakeAmount += 0.7; break;
-									case 4: obj_gameController.shakeAmount += 0.5; break;
+									case 0: obj_gameController.shakeAmount += 0.1; addKnockbackToPlayer(0.1, bullet.image_angle); break;
+									case 1: obj_gameController.shakeAmount += 0.2; addKnockbackToPlayer(0.2, bullet.image_angle); break;
+									case 2: obj_gameController.shakeAmount += 0.05; addKnockbackToPlayer(0.05, bullet.image_angle); break;
+									case 3: obj_gameController.shakeAmount += 0.7; addKnockbackToPlayer(0.7, bullet.image_angle); break;
+									case 4: obj_gameController.shakeAmount += 0.5; addKnockbackToPlayer(0.5, bullet.image_angle); break;
 								}
 							}
 						}
