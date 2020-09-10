@@ -11,6 +11,7 @@ enemyState = 0;
 drawAlert = false;
 startChase = false;
 path = path_add();
+pathTimer = 0;
 lastX = x;
 didDamage = 0;
 sightDistance = 50;

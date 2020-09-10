@@ -18,6 +18,8 @@ if (instance_exists(obj_player)) {
 					if (mp_grid_path(global.grid, path, x, y, obj_player.x, obj_player.y,1)) {
 						path_start(path, curRunSpeed, path_action_stop, false);
 					}
+				} else {
+					path_delete(path);
 				}
 				break;
 		}
@@ -51,10 +53,11 @@ if (enemyState == 2) {
 
 #region Death
 if (hp <= 0) {
-	instance_destroy();
+	path_delete(path);
 	for (var i = 0; i < 10; i++) {
 		instance_create_depth(x + random_range(-8,8), y + random_range(-8,8), -y, obj_bloodPart);
 	}
+	instance_destroy();
 }
 #endregion
 
