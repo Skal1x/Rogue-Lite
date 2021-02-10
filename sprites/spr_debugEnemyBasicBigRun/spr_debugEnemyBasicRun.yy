@@ -68,7 +68,7 @@
     "eventStubScript": null,
     "parent": {"name":"spr_debugEnemyBasicRun","path":"sprites/spr_debugEnemyBasicRun/spr_debugEnemyBasicRun.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_debugEnemyBasicRun",
+    "name": "",
     "tags": [],
     "resourceType": "GMSequence",
   },

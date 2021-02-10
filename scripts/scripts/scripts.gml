@@ -16,8 +16,8 @@ function getGunForEnemy(enemyType, isMayhem){
 						ammoInRes: 0,
 					},
 					stats: {
-						damage: irandom_range(2,5),
-						fireRate: irandom_range(15,30),
+						damage: irandom_range(1,3),
+						fireRate: irandom_range(25,40),
 						fireMode: getRandomFireMode(),
 						isSingleShot: false,
 						burst: {
@@ -29,7 +29,7 @@ function getGunForEnemy(enemyType, isMayhem){
 						fireInaccuracy: random_range(0.5,2),
 						bullet: {
 							bType: irandom_range(0,1),
-							bSpeed: irandom_range(6,10),
+							bSpeed: irandom_range(1,6),
 							bRange: irandom_range(120,300),
 						},
 						randomEffect: 0,
@@ -133,6 +133,27 @@ function getRandomFireMode() {
 			return "single";
 			break;
 	}
+}
+	
+function addKnockbackToPlayer(kbAmount, shotDir) {
+	var counterShotDir = 0;
+	
+	if (shotDir > 180) {
+		counterShotDir = shotDir - 180;
+	} else {
+		counterShotDir = shotDir + 180;
+	}
+	
+	var rad = counterShotDir * (pi / 180);
+	
+	var stepX = cos(rad);
+	var stepY = sin(rad) * -1;
+	
+	show_debug_message(stepX);
+	show_debug_message(stepY);
+	
+	obj_player.hsp += stepX * kbAmount * 5;
+	obj_player.vsp += stepY * kbAmount * 5;
 }
 	
 function getSpawnerTexture(enemyType) {

@@ -1,37 +1,57 @@
+
 #region Movement Input
 if (keyboard_check(ord("W"))) vsp -= runSpeed;
 if (keyboard_check(ord("A"))) hsp -= runSpeed;
 if (keyboard_check(ord("S"))) vsp += runSpeed;
 if (keyboard_check(ord("D"))) hsp += runSpeed;
+
+if (!keyboard_check(ord("W")) && !keyboard_check(ord("S"))) vsp = 0;
+if (!keyboard_check(ord("A")) && !keyboard_check(ord("D"))) hsp = 0;
+#endregion
+
+#region GodMode
+if (keyboard_check_pressed(ord("J"))) {
+	godMode = !godMode;
+}
 #endregion
 
 #region Collisions
 if (place_meeting(x, y+vsp, obj_wall)) {
 	if (vsp > 0) {
 		while (place_meeting(x, y + vsp, obj_wall)) {
-			vsp--;
+			if (vsp > 1) {
+				vsp -= 1;
+			} else {
+				vsp = 0;
+			}
 		}
 	} else {
 		while (place_meeting(x, y + vsp, obj_wall)) {
-			vsp++;
+			if (vsp < -1) {
+				vsp += 1;
+			} else {
+				vsp = 0;
+			}
 		}
 	}
 }
 
-#region GodMode
-if (keyboard_check(ord("J"))) {
-	godMode = !godMode;
-}
-#endregion
-
 if (place_meeting(x + hsp, y, obj_wall)) {
 	if (hsp > 0) {
 		while (place_meeting(x + hsp, y, obj_wall)) {
-			hsp--;
+			if (hsp > 1) {
+				hsp -= 1;
+			} else {
+				hsp = 0;
+			}
 		}
 	} else {
 		while (place_meeting(x + hsp, y, obj_wall)) {
-			hsp++;
+			if (hsp < -1) {
+				hsp += 1;
+			} else {
+				hsp = 0;
+			}
 		}
 	}
 }
@@ -79,7 +99,7 @@ for (var i = 0; i < 100; i++) {
 x += hsp;
 y += vsp;
 #endregion
-	
+
 #region Sprites Manipulation and Animation
 //Run Animation
 if (vsp != 0 || hsp != 0) {

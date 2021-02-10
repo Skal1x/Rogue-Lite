@@ -153,7 +153,7 @@ switch (enemyState) {
 				}
 				audio_play_sound(snd_gunShotGeneric,1,0);
 				if (gunState.stats.fireMode == "single") isChambered = false;
-				if (gunState.stats.fireMode == "burst") gunState.stats.burst.remaining = gunState.stats.burst.size;
+				if (gunState.stats.fireMode == "burst") gunState.stats.burst.remaining = gunState.stats.burst.size - 1;
 				if (gunState.stats.fireMode == "semi") { semiDelay = true; semiTimer = irandom_range(20,60); }
 				gunState.general.ammoInMag--;
 				gunState.status.fireReadyCD = gunState.stats.fireRate;
@@ -166,7 +166,6 @@ switch (enemyState) {
 #region Forceful Shooting of Burst
 if (gunState.stats.burst.remaining > 0 && gunState.status.fireReadyCD == 0) {
 	if (gunState.general.ammoInMag > 0) {
-		gunState.stats.burst.remaining--;
 		with (instance_create_depth(x,y,-y,obj_enemyBullet)) {
 			parent = other.id;
 			bulletSpeed = parent.gunState.stats.bullet.bSpeed;
@@ -197,6 +196,7 @@ if (gunState.stats.burst.remaining > 0 && gunState.status.fireReadyCD == 0) {
 		gunState.stats.burst.remaining--;
 		gunState.general.ammoInMag--;
 		gunState.status.fireReadyCD = gunState.stats.fireRate;
+		audio_play_sound(snd_gunShotGeneric,1,0);
 	} else {
 		gunState.stats.burst.remaining = 0;
 	}
