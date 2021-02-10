@@ -1,0 +1,1 @@
+currentInacc = 0;
