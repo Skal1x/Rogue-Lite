@@ -145,3 +145,27 @@ function getSpawnerTexture(enemyType) {
 			break;
 	}
 }
+
+function addShakeAmount(bulletType) {
+	switch (bulletType) {
+		case 0: obj_gameController.shakeAmount += 0.1; break;
+		case 1: obj_gameController.shakeAmount += 0.2; break;
+		case 2: obj_gameController.shakeAmount += 0.05; break;
+		case 3: obj_gameController.shakeAmount += 0.7; break;
+		case 4: obj_gameController.shakeAmount += 0.5; break;
+	}
+}
+
+function consoleLog(message, displayTime) {
+	with (obj_console) {
+		ds_list_add(messages, message);
+		ds_list_add(timer, displayTime);
+	}
+}
+
+function consoleLogValue(message, value, displayTime) {
+	with (obj_console) {
+		ds_list_add(messages, message + " :: " + value);
+		ds_list_add(timer, displayTime);
+	}
+}
