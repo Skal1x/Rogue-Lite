@@ -26,8 +26,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "UI",
-    "path": "folders/Objekte/UI.yy",
+    "name": "HUD",
+    "path": "folders/Objekte/UI/HUD.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_healthBar",

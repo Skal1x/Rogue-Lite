@@ -25,8 +25,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "UI",
-    "path": "folders/Objekte/UI.yy",
+    "name": "Legacy",
+    "path": "folders/Objekte/UI/Legacy.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_crosshairOld",

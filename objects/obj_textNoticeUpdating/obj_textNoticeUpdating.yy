@@ -25,8 +25,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "UI",
-    "path": "folders/Objekte/UI.yy",
+    "name": "Debug",
+    "path": "folders/Objekte/UI/Debug.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_textNoticeUpdating",
