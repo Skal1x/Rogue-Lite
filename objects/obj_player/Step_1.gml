@@ -59,11 +59,13 @@ if (dash) {
 }
 #endregion
 
-#region Speed Limit and Drag
+#region Speed/Spread Limit and Drag
 if (vsp <= -runSpeed) vsp = -runSpeed;
 if (hsp <= -runSpeed) hsp = -runSpeed;
 if (vsp >= runSpeed) vsp = runSpeed;
 if (hsp >= runSpeed) hsp = runSpeed;
+
+if (curFireInacc > maxFireInacc) curFireInacc = maxFireInacc;
 
 for (var i = 0; i < 100; i++) {
 	if (hsp < 0) {hsp += drag; if (hsp > 0) hsp = 0;}

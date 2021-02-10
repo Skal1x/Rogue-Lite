@@ -5,6 +5,7 @@ hp = 100.00;
 hsp = 0;
 vsp = 0;
 maxRunSpeed = 1.5;
+maxFireInacc = 125;
 runSpeed = maxRunSpeed;
 drag = 0.005;
 dash = false;

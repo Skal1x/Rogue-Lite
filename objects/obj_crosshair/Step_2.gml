@@ -16,6 +16,9 @@ if(instance_exists(obj_player)) {
 	image_yscale = 1 + abs(obj_player.hsp) / obj_player.maxRunSpeed / 2 + abs(obj_player.vsp) / obj_player.maxRunSpeed / 2;
 	
 	completeSpread = obj_player.inv[obj_player.slot].stats.spread + obj_player.curFireInacc + abs(obj_player.hsp) * 10 + abs(obj_player.vsp) * 10;
+	
+	if (completeSpread > 110) completeSpread = 110;
+	
 	lineSpread = completeSpread;
 	
 	lineOneDir = point_direction(obj_player.x, obj_player.y, mouse_x, mouse_y) + lineSpread;
@@ -32,40 +35,6 @@ if(instance_exists(obj_player)) {
 	
 	lineTwoX = obj_player.x + cos(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) + stepX * curHsp * xFactor;
 	lineTwoY = (obj_player.y + sin(lineTwoRad) * point_distance(obj_player.x, obj_player.y, mouse_x, mouse_y) * -1) + stepY * curVsp * yFactor;
-	
-	/*
-	if (curLineOneX < lineOneX) {
-		curLineOneX += 5;
-		if (curLineOneX > lineOneX) curLineOneX = lineOneX;
-	} else {
-		curLineOneX -= 5;
-		if (curLineOneX > lineOneX) curLineOneX = lineOneX;
-	}
-	
-	if (curLineOneY < lineOneY) {
-		curLineOneY += 5;
-		if (curLineOneY > lineOneY) curLineOneY = lineOneY;
-	} else {
-		curLineOneY -= 5;
-		if (curLineOneY > lineOneY) curLineOneY = lineOneY;
-	}
-	
-	if (curLineTwoX < lineTwoX) {
-		curLineTwoX += 5;
-		if (curLineTwoX > lineTwoX) curLineTwoX = lineTwoX;
-	} else {
-		curLineTwoX -= 5;
-		if (curLineTwoX > lineTwoX) curLineTwoX = lineTwoX;
-	}
-	
-	if (curLineTwoY < lineTwoY) {
-		curLineTwoY += 5;
-		if (curLineTwoY > lineTwoY) curLineTwoY = lineTwoY;
-	} else {
-		curLineTwoY -= 5;
-		if (curLineTwoY > lineTwoY) curLineTwoY = lineTwoY;
-	}
-	*/
 }
 
 depth = -y - 1000;
