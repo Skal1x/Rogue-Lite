@@ -86,13 +86,6 @@ if (vsp >= runSpeed) vsp = runSpeed;
 if (hsp >= runSpeed) hsp = runSpeed;
 
 if (curFireInacc > maxFireInacc) curFireInacc = maxFireInacc;
-
-for (var i = 0; i < 100; i++) {
-	if (hsp < 0) {hsp += drag; if (hsp > 0) hsp = 0;}
-	if (vsp < 0) {vsp += drag; if (vsp > 0) vsp = 0;}
-	if (hsp > 0) {hsp -= drag; if (hsp < 0) hsp = 0;}
-	if (vsp > 0) {vsp -= drag; if (vsp < 0) vsp = 0;}
-}
 #endregion
 
 #region Movement Execution
